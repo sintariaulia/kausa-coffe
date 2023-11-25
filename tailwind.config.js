@@ -2,13 +2,15 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},
   },
   plugins: [
-    require('tailwindcss'),       // Plugin untuk menggunakan Tailwind CSS
-    require('daisyui'),          // Plugin DaisyUI untuk komponen lebih lanjut
+    require('tailwindcss'),       
+    require('daisyui'),          // Plugin DaisyUI
+    require('flowbite/plugin'),  // Plugin Flowbite
     require('autoprefixer'),    // Plugin untuk menambahkan vendor prefixes
   ],
 }

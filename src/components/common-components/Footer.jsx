@@ -1,11 +1,12 @@
 import React from "react";
+import LogoFooter from '../../assets/logo.png';
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-4 bg-[#fdc468] shadow-2xl text-black">
+        <footer className="footer footer-center p-3 bg-[#edeae4] shadow-2xl text-[#675e51]">
             <div>
-                <img src="/img/logo.png" alt="logoIcon" className='mx-5 md:mx-0 w-[75px] h-[75px] ' />
-                <p className="font-semibold text-base">Kausa.idn</p>
+                <img src={LogoFooter} alt="LogoFooter" className='mx-5 w-[70px] h-[70px] ' />
+                <p className="font-semibold text-base">Kausa meet space & coffee</p>
                 <p>Jl. Dr. Moh. Hatta No.12, Binuang Kp. Dalam, Kec. Pauh, Kota Padang, Sumatera Barat 25176</p>
                 <p>Copyright © 2023 - All right reserved</p>
             </div>

@@ -29,13 +29,13 @@ const SignUp = () => {
 
     return (
         // screen
-        <div className='bg-[#f7f4ef] flex w-full px-5 md:px-2 lg:w-full h-screen  items-center justify-center'>
+        <div className='bg-[#ffffff] flex w-full px-5 md:px-2 lg:w-full h-screen  items-center justify-center'>
             {/* screen dalam */}
-            <div className=' flex bg-white/50 py-3 md:py-20 rounded-3xl '>
+            <div className=' flex bg-[#efe6dc] py-3 md:py-20 rounded-3xl '>
                 {/* form login */}
                 <div className=' pl-[70px] md:pr-10'>
                     <h1 className='text-2xl md:text-3xl font-extrabold text-center py-5 text-slate-600'>SIGN UP</h1>
-                    <img src="/img/kausa.png" alt="" className='md:hidden rounded-xl py-5' />
+                    <img src="/img/hero.png" alt="" className='md:hidden rounded-xl py-5'/>
 
                     <form onSubmit={handleSubmit}>
                         <div>
@@ -46,11 +46,11 @@ const SignUp = () => {
                                 placeholder='full name' />
                         </div>
                         <div>
-                            <label htmlFor='nohp' className='text-[14.7px] font-medium text-slate-600'>No Handphone/Whatsapp</label>
+                            <label htmlFor='nohp' className='text-[14.7px] font-medium text-slate-600'>No.Whatsapp</label>
                             <input value={nohp} onChange={(e) => setNohp(e.target.value)}
                                 type='nohp' id='nohp'
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
-                                placeholder='nomor handphone' />
+                                placeholder='08xxxxxxxxxx' />
                         </div>
                         <div className='pt-3'>
                             <label htmlFor='email' className='text-[14.7px] font-medium text-slate-600'>Email</label>
@@ -70,12 +70,12 @@ const SignUp = () => {
                         {/* BUTTON */}
                         <div className='flex flex-col gap-y-4 py-10'>
                             <button type='submit'
-                                className="bg-[#ef6a6a] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >
+                                className="bg-[#54514d] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >
                                 Sign Up
                             </button>
                             <Link to="/signin">
-                                <button className='btn-link font-semibold text-sm text-[#bfbfbf]'>
-                                    Alredy have an account? <span className='font-extrabold'>SIGN IN</span> here
+                                <button className='btn-link font-semibold text-sm text-slate-600'>
+                                    Alredy have an account? <span className='font-extrabold '>SIGN IN</span> here
                                 </button>
                             </Link>
 
@@ -85,9 +85,9 @@ const SignUp = () => {
                 </div>
 
                 {/* img login */}
-                <div className='px-10 flex items-center'>
-                    <img src="/img/kausa.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem]' />
-
+                <div className='home-img px-10 flex flex-col items-center'>
+                    <img src="/img/hero1.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem] 2xl:w-[400px]' />
+                    
                 </div>
 
             </div>

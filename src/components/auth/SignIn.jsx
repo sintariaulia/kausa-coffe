@@ -38,9 +38,9 @@ const SignIn = () => {
 
     return (
         // screen
-        <div className='bg-[#f7f4ef] flex w-full px-5 md:px-2 lg:w-full h-screen  items-center justify-center'>
+        <div className='bg-[#ffff] flex w-full px-5 md:px-2 lg:w-full h-screen  items-center justify-center'>
             {/* screen dalam */}
-            <div className=' flex bg-white/50 py-3 md:py-20 rounded-3xl '>
+            <div className=' flex bg-[#efe6dc] py-3 md:py-20 rounded-3xl '>
                 {/* form login */}
                 <div className=' pl-[70px] md:pr-10'>
                     <h1 className='text-2xl md:text-3xl font-extrabold text-center py-5 text-slate-600'>SIGN IN</h1>
@@ -65,11 +65,11 @@ const SignIn = () => {
                         {/* BUTTON */}
                         <div className='flex flex-col gap-y-4 py-10'>
                             <button type='submit'
-                                className="bg-[#ef6a6a] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >
+                                className="bg-[#54514d] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >
                                 Sign In
                             </button>
                             <Link to="/signup">
-                                <button className='btn-link font-semibold text-sm text-[#bfbfbf]'>
+                                <button className='btn-link font-semibold text-sm text-slate-600'>
                                     Don't have an account ?
                                     <span className='font-extrabold'> SIGN UP</span>
                                 </button>
@@ -81,9 +81,9 @@ const SignIn = () => {
                 </div>
 
                 {/* img login */}
-                <div className='px-10 flex items-center'>
-                    <img src="/img/kausa.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem]' />
-
+                <div className='home-img px-10 flex flex-col items-center'>
+                    <img src="/img/hero1.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem] 2xl:w-[400px]' />
+                   
                 </div>
 
             </div>
