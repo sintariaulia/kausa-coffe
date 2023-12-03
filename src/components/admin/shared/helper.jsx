@@ -43,21 +43,21 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'pembayaran',
 		label: 'Pembayaran',
-		path: '/admin/bayar',
+		path: '/admin/pembayaran',
 		icon: <HiCurrencyDollar />
 	},
-	{
-		key: 'transaksi',
-		label: 'Transaksi',
-		path: '/admin/transaksi',
-		icon: <HiOutlineChartBar />
-	},
-	{
-		key: 'penjualan',
-		label: 'Laporan Pemesanan',
-		path: '/admin',
-		icon: <HiDocumentText />
-	},
+	// {
+	// 	key: 'transaksi',
+	// 	label: 'Transaksi',
+	// 	path: '/admin/transaksi',
+	// 	icon: <HiOutlineChartBar />
+	// },
+	// {
+	// 	key: 'penjualan',
+	// 	label: 'Laporan Pemesanan',
+	// 	path: '/admin',
+	// 	icon: <HiDocumentText />
+	// },
 	// {
 	// 	key: 'pendapatan',
 	// 	label: 'Laporan Pendapatan',

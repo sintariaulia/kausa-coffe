@@ -3,14 +3,22 @@ import { useNavigate } from 'react-router-dom'
 import { Menu, Transition } from '@headlessui/react'
 import { HiOutlineLogout } from 'react-icons/hi'
 import classNames from 'classnames'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../services/authSlice'
 
 const KasirNavbar = () => {
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
+        navigate("/");
+    };
 
     return (
         <div className="bg-[#f6f6f6] h-20 px-10 flex items-center border-b border-gray-300 justify-end">
             <div className="relative font-normal text-[#675e51]">
-                Kasir 
+                Kasir
             </div>
             <Menu as="div" className="relative">
                 <div className='pr-10'>
@@ -38,8 +46,10 @@ const KasirNavbar = () => {
                                     className={classNames(
                                         active && 'bg-gray-100',
                                         'active:bg-gray-200 flex items-center px-4 py-2 text-red-600 cursor-pointer focus:bg-gray-200'
-                                    )}>
-                                    Sign out
+                                    )}
+                                    onClick={() => handleLogout()}
+                                >
+                                    Logout
                                     <span className="text-xl pl-3"><HiOutlineLogout /></span>
                                 </div>
                             )}

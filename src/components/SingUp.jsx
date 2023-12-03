@@ -1,30 +1,48 @@
 import React, { useState } from 'react'
+import axios from 'axios';
 import { Link, useNavigate } from "react-router-dom";
-// import { getSignIn } from '../../../services/auth/index';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const [name, setName] = useState('')
-    const [nohp, setNohp] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [nama, setNama] = useState('');
+    const [noHp, setNohp] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
-        //     await getSignUp(name, email, password);
-        //     localStorage.setItem("authTokenRegister", true);
-        //     navigate("/SignIn");
-        //     toast.success("Register Account Succefully!", {
-        //         autoClose: 1500
-        //     });
-        // } catch (error) {
-        //     toast.error("Please add a valid data", {
-        //         autoClose: 1500
-        //     });
-        // }
+        try {
+            const response = await axios.post('http://localhost:3001/auth/register', {
+                nama: nama,
+                role: "user",
+                no_hp: noHp,
+                email: email,
+                password: password,
+            });
+            console.log(response.data)
+
+            if (response.data.status_code === 409) {
+                // Show SweetAlert for email already exists
+                Swal.fire({
+                    icon: "error",
+                    text: response.data.message,
+                    confirmButtonText: "OK",
+                });
+            } else if (response.data.message === "Register User Successfully") {
+                // Show SweetAlert for successful registration
+                Swal.fire({
+                    icon: "success",
+                    text: response.data.message,
+                    confirmButtonText: "OK",
+                }).then(() => {
+                    navigate("/signin");
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (
@@ -35,22 +53,22 @@ const SignUp = () => {
                 {/* form login */}
                 <div className=' pl-[70px] md:pr-10'>
                     <h1 className='text-2xl md:text-3xl font-extrabold text-center py-5 text-slate-600'>SIGN UP</h1>
-                    <img src="/img/hero.png" alt="" className='md:hidden rounded-xl py-5'/>
+                    <img src="/img/hero.png" alt="" className='md:hidden rounded-xl py-5' />
 
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor='name' className='text-[14.7px] font-medium text-slate-600'>Full Name</label>
-                            <input value={name} onChange={(e) => setName(e.target.value)}
-                                type='name' id='name'
+                            <label htmlFor='nama' className='text-[14.7px] font-medium text-slate-600'>Full Name</label>
+                            <input value={nama} onChange={(e) => setNama(e.target.value)}
+                                type='nama' id='nama'
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
                                 placeholder='full name' />
                         </div>
-                        <div>
-                            <label htmlFor='nohp' className='text-[14.7px] font-medium text-slate-600'>No.Whatsapp</label>
-                            <input value={nohp} onChange={(e) => setNohp(e.target.value)}
-                                type='nohp' id='nohp'
+                        <div className='pt-3'>
+                            <label htmlFor='no_hp' className='text-[14.7px] font-medium text-slate-600'>No Handphone</label>
+                            <input value={noHp} onChange={(e) => setNohp(e.target.value)}
+                                type='no_hp' id='no_hp'
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
-                                placeholder='08xxxxxxxxxx' />
+                                placeholder='+628xxxxxxxx' />
                         </div>
                         <div className='pt-3'>
                             <label htmlFor='email' className='text-[14.7px] font-medium text-slate-600'>Email</label>
@@ -81,15 +99,12 @@ const SignUp = () => {
 
                         </div>
                     </form>
-                    {/* <ToastContainer /> */}
-                </div>
 
+                </div>
                 {/* img login */}
-                <div className='home-img px-10 flex flex-col items-center'>
-                    <img src="/img/hero1.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem] 2xl:w-[400px]' />
-                    
+                <div className='home-img px-10 flex flex-col justify-center'>
+                    <img src="/img/hero1.png" alt="" className='hidden md:block items-center rounded-2xl md:w-[30rem] 2xl:w-[400px]' />
                 </div>
-
             </div>
             {/* screen dalam */}
         </div>

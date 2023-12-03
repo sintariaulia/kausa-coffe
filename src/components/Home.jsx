@@ -10,8 +10,7 @@ import PromoKopiSusu500 from '../assets/promo3.png';
 const Home = () => {
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        window.scrollTo(0, 0);  // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

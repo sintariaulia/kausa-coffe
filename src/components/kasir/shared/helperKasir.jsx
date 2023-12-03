@@ -15,19 +15,19 @@ export const KASIR_SIDEBAR_LINKS = [
 	{
 		key: 'produkkasir',
 		label: 'Produk',
-		path: '/kasir',
+		path: '/kasir/produks',
 		icon: <HiTag />
 	},
 	{
 		key: 'pesanan',
 		label: 'Pesanan',
-		path: '/admin',
+		path: '/kasir/pesanan',
 		icon: <HiOutlineShoppingCart />
 	},
 	{
 		key: 'pembayaran',
 		label: 'Pembayaran',
-		path: '/admin',
+		path: '/kasir/pembayaran',
 		icon: <HiCurrencyDollar />
 	},
 ]

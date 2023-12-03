@@ -1,8 +1,9 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from '../pages/homepages';
-import SignIns from '../pages/auth/signinpages';
-import SignUps from '../pages/auth/signuppages';
+import SignIns from '../pages/signinpages';
+import SignUps from '../pages/signuppages';
+import LoginGuard from '../components/SignInGuard';
 // ! USER
 import AboutUsPage from '../pages/customers/aboutuspages';
 import StorePageUs from '../pages/customers/storeuspages';
@@ -11,46 +12,138 @@ import ListProdukPages from '../pages/produks/ListProdukPages';
 import DetailProdukPages from '../pages/produks/DetailProdukPages';
 // ! ADMIN
 import DashboardAdminPage from '../pages/admin/DashboardAdminPage';
+import AdminDashboardGuard from '../pages/admin/AdminDashboardGuard';
 // Data Kategori
 import ListKategoriAdminPage from '../pages/admin/kategoriAdminPage/ListKategoriAdminPage';
 // Data User
 import ListUserAdminPage from '../pages/admin/userAdminPage/ListUserAdminPage';
+import DetailUserAdminPage from '../pages/admin/userAdminPage/DetailUserAdminPage';
 // Data Produk
 import ListProdukAdminPage from '../pages/admin/produkAdminPage/ListProdukAdminPage';
+import DetailProdukAdminPage from '../pages/admin/produkAdminPage/DetailProdukAdminPage';
+import CreateProdukAdminPage from '../pages/admin/produkAdminPage/CreateProdukAdminPage';
+import EditProdukAdminPage from '../pages/admin/produkAdminPage/EditProdukAdminPage';
+// Data Pesanan
+import ListPesananAdminPage from '../pages/admin/pesananAdminPage/ListPesananAdminPage';
+// Data Pembayaran
+import ListPembayaranAdminPage from '../pages/admin/pembayaranAdminPage/ListPembayaranAdminPage';
 
 // ! KASIR
 import DashboardKasirPage from '../pages/kasir/DashboardKasirPage';
 // Data Produk
 import ListProdukKasirPage from '../pages/kasir/produkKasirPage/ListProdukKasirPage';
+import CreateProdukKasirPage from '../pages/kasir/produkKasirPage/CreateProdukKasirPage';
+import DetailProdukKasirPage from '../pages/kasir/produkKasirPage/DetailProdukKasirPage';
+import EditProdukKasirPage from '../pages/kasir/produkKasirPage/EditProdukKasirPage';
+// Data Pesanan
+import ListPesananKasirPage from '../pages/kasir/pesananKasirPage/ListPesananKasirPage';
+// Data Pembayaran
+import ListPembayaranKasirPage from '../pages/kasir/pembayaranKasirPage/ListPembayaranKasirPage';
+
 
 function IndexRouter() {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
+    <div>
+      {loading ? (
+        <div className="flex justify-center items-center h-screen">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-bgFunc h-12 w-12 mb-4"></div>
+        </div>
+      ) : (
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/signin' element={<SignIns />} />
+          <Route path='/signup' element={<SignUps />} />
 
-        <Route path='/signin' element={<SignIns />} />
-        <Route path='/signup' element={<SignUps />} />
+          {/* User */}
+          <Route path='/aboutus' element={<AboutUsPage />} />
+          <Route path='/store' element={<StorePageUs />} />
+          <Route path='/produks' element={<ListProdukPages />} />
+          <Route path='/produks/:id' element={<DetailProdukPages />} />
 
-        {/* User */}
-        <Route path='/aboutus' element={<AboutUsPage />} />
-        <Route path='/store' element={<StorePageUs />} />
+          {/* Admin */}
+          <Route
+            path='/admin/dashboard'
+            element={
+              <AdminDashboardGuard>
+                <DashboardAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route path='/admin/users' element={<ListUserAdminPage />} />
+          <Route path='/admin/users/:id/detail' element={<DetailUserAdminPage />} />
+          <Route
+            path='/admin/kategori'
+            element={
+              <AdminDashboardGuard>
+                <ListKategoriAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route
+            path='/admin/produks'
+            element={
+              <AdminDashboardGuard>
+                <ListProdukAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route
+            path='/admin/produks/create-produk'
+            element={
+              <AdminDashboardGuard>
+                <CreateProdukAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route path='/admin/produks/:id/edit' element={<EditProdukAdminPage />} />
+          <Route
+            path='/admin/produks/:id/detail'
+            element={
+              <AdminDashboardGuard>
+                <DetailProdukAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route
+            path='/admin/pesanan'
+            element={
+              <AdminDashboardGuard>
+                <ListPesananAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          <Route
+            path='/admin/pembayaran'
+            element={
+              <AdminDashboardGuard>
+                <ListPembayaranAdminPage />
+              </AdminDashboardGuard>
+            }
+          />
+          {/* End Admin Route */}
 
-        <Route path='/produks' element={<ListProdukPages />} />
-        <Route path='/produks/:id' element={<DetailProdukPages />} />
+          {/* Kasir */}
+          <Route path='/kasir/dashboard' element={<DashboardKasirPage />} />
+          <Route path='/kasir/produks' element={<ListProdukKasirPage />} />
+          <Route path='/kasir/produks/create-produk' element={<CreateProdukKasirPage />} />
+          <Route path='/kasir/produks/:id/detail' element={<DetailProdukKasirPage />} />
+          <Route path='/kasir/produks/:id/edit' element={<EditProdukKasirPage />} />
+          <Route path='/kasir/pesanan' element={<ListPesananKasirPage />} />
+          <Route path='/kasir/pembayaran' element={<ListPembayaranKasirPage />} />
+          {/* End Kasir Route */}
 
-        {/* Admin */}
-        <Route path='/admin/dashboard' element={<DashboardAdminPage />} />
-        <Route path='/admin/kategori' element={<ListKategoriAdminPage />} />
-        <Route path='/admin/users' element={<ListUserAdminPage />} />
-        <Route path='/admin/produks' element={<ListProdukAdminPage />} />
-
-        {/* Kasir */}
-        <Route path='/kasir/dashboard' element={<DashboardKasirPage />} />
-        <Route path='/kasir' element={<ListProdukKasirPage />} />
-
-      </Routes>
-    </Router>
+        </Routes>
+      )}
+    </div>
   )
 }
 

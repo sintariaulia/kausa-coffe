@@ -2,13 +2,22 @@ import React from 'react'
 import LogoHori from '../assets/logo1.png'
 import LogoKausa from '../assets/logo2.png'
 import classNames from 'classnames'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../services/authSlice'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { DASHBOARD_SIDEBAR_LINKS } from './helper'
 
-const linkClass ='flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f0ede6] hover:no-underline active:bg-neutral-600 rounded-xl font-bold text-base'
+const linkClass = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f0ede6] hover:no-underline active:bg-neutral-600 rounded-xl font-bold text-base'
 
 const AdminSidebar = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
+        navigate("/");
+    };
     return (
         <div className="bg-[#f6f6f6] font-bold w-[19rem] p-3 flex flex-col">
             <div className="flex items-center justify-center gap-2 px-1 pt-10">
@@ -24,11 +33,14 @@ const AdminSidebar = () => {
                 />
 
             </div>
-            <div className="py-12 flex flex-1 flex-col px-5 gap-3">
+            <div className="py-12 flex flex-1 flex-col font-semibold px-5 gap-5">
                 {DASHBOARD_SIDEBAR_LINKS.map((link) => (
                     <SidebarAdminLink key={link.key} link={link} />
                 ))}
-                <div className={classNames(linkClass, 'cursor-pointer text-red-600')}>
+                <div
+                    className={classNames(linkClass, 'cursor-pointer text-red-600')}
+                    onClick={() => handleLogout()}  // Langkah 6: Panggil handler logout saat tombol logout diklik
+                >
                     <span className="text-xl"><HiOutlineLogout /></span>
                     Logout
                 </div>

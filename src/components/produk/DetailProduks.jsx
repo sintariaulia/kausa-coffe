@@ -37,11 +37,11 @@ const DetailProduks = () => {
             <h3 className='text-[#a3292f] text-lg pb- font-bold'>Rp.  <span className='text-[22px]'>{produks?.harga}</span></h3>
             <p className='text-[#675e51] pr-16 text-base md:text-lg font-normal text-justify  py-3'>{produks?.deskripsi}</p>
 
-            <div className='flex justify-start text-white font-semibold gap-5'>
-              <button className="border-[2px] rounded-full text-[15px] bg-[#a3292f] hover:bg-[#ff3333] px-[50px] py-[8px]">Order</button>
-              <div className="rounded-full h-12 w-12 flex items-center justify-center bg-[#a3292f] hover:bg-[#ff3333]">
+            <div className='flex justify-start text-white py-5 font-semibold gap-5'>
+              <button className="border-[2px] rounded-full text-[15px] bg-[#a3292f] hover:bg-[#ff3333] px-[50px] py-[8px]">Order </button>
+              {/* <div className="rounded-full h-12 w-12 flex items-center justify-center bg-[#a3292f] hover:bg-[#ff3333]">
                 <FaShoppingCart className="text-lg text-white" />
-              </div>
+              </div> */}
             </div>
 
           </div>

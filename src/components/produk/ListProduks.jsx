@@ -20,6 +20,14 @@ const ListProduks = () => {
             const response = await axios.get('http://localhost:3001/produk');
             console.log('response', response.data);
             const listProduks = response.data?.datas;
+
+            // List produks sesuai kode produknya
+            listProduks.sort((a, b) => {
+                const kodeA = parseInt(a.kode_produk.slice(1));
+                const kodeB = parseInt(b.kode_produk.slice(1));
+                return kodeA - kodeB;
+            });
+
             setProduks(listProduks);
         } catch (error) {
             console.log(error, "error");
@@ -43,10 +51,10 @@ const ListProduks = () => {
                                 <h6 className='text-[#675e51] text-[14px] rounded-2xl font-normal'>{produk.kategori_id}</h6>
                             </div>
                             <div className='flex justify-end gap-1.5 text-right pt-2'>
-                                <div className="rounded-full h-8 w-8 flex items-center justify-center bg-[#a3292f] hover:bg-[#ff3333]">
+                                {/* <div className="rounded-full h-8 w-8 flex items-center justify-center bg-[#a3292f] hover:bg-[#ff3333]">
                                     <FaShoppingCart className="text-lg text-white" />
 
-                                </div>
+                                </div> */} 
                                 <button
                                     className="btn btn-sm border-0  bg-[#a3292f] text-white font-medium text-sm rounded-2xl hover:bg-[#ff3333]">
                                     Order

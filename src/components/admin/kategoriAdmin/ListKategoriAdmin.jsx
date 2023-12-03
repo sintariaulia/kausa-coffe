@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 import AdminSidebar from '../shared/AdminSidebar'
 import NavbarAdmin from '../shared/NavbarAdmin'
 import { FaPlus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
 import { CiSaveDown2, CiCircleRemove } from 'react-icons/ci'
 
 const ListKategoriAdmin = () => {
-
     const [ketegoris, setKategoris] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [newCategory, setNewCategory] = useState('');
     const [editCategory, setEditCategory] = useState('');
     const [editCategoryId, setEditCategoryId] = useState(null);
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchKategoris = async () => {
+            let config = {
+                method: "get",
+                maxBodyLength: Infinity,
+                url: `http://localhost:3001/kategori`,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
             try {
-                const response = await axios.get('http://localhost:3001/kategori');
-                console.log('response', response.data);
+                const response = await axios.request(config);
                 const listKategoris = response.data?.datas;
+                listKategoris.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
                 setKategoris(listKategoris);
             } catch (error) {
                 console.log(error, "error");
@@ -28,17 +38,84 @@ const ListKategoriAdmin = () => {
         fetchKategoris();
     }, []);
 
+    // Function Create Data Kategori
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        
+        let config = {
+            method: "post",
+            maxBodyLength: Infinity,
+            url: `http://localhost:3001/kategori`,
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        try {
+            const response = await axios.request(config, {nama_kategori: newCategory,});
+            console.log(JSON.stringify(response.data));
+        
+            // Close the form and refresh the data
+            setShowForm(false);
+            // swal fire
+            await Swal.fire({
+                title: "Berhasil!",
+                text: "Data berhasil ditambahkan.",
+                icon: "success",
+                confirmButtonText: "OK",
+            });
+
+            setNewCategory('');
+            window.location.reload();
+        } catch (error) {
+            console.log(error, 'error');
+        }
+    };
+
+    // Function Edit Data Kategori
+    const handleEditFormSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`http://localhost:3001/kategori/${editCategoryId}`, {
+                nama_kategori: editCategory,
+            });
+            setShowForm(false);
+
+            await Swal.fire({
+                title: "Update Saved!",
+                icon: "success",
+            });
+
+            setEditCategory('');
+            setEditCategoryId(null);
+            window.location.reload();
+        } catch (error) {
+            console.log(error, 'error');
+        }
+    };
+
+    // Function to open the edit form
+    const openEditForm = (kategori) => {
+        setShowForm(true);
+        setEditCategory(kategori.nama_kategori);
+        setEditCategoryId(kategori.id);
+    };
+
+    // Function to Delete 
     const deleteKategoris = async (id) => {
         console.log(id);
         try {
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/kategori/${id}`
+                url: `http://localhost:3001/kategori/${id}`,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
             };
 
             Swal.fire({
                 title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                text: "You won't be able to delete this!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -60,47 +137,6 @@ const ListKategoriAdmin = () => {
             console.log(error, 'error');
         }
     }
-
-    // Function Create Data Kategori
-    const handleFormSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post('http://localhost:3001/kategori', {
-                nama_kategori: newCategory,
-            });
-
-            // Close the form and refresh the data
-            setShowForm(false);
-            setNewCategory('');
-            window.location.reload();
-        } catch (error) {
-            console.log(error, 'error');
-        }
-    };
-
-    // Function Edit Data Kategori
-    const handleEditFormSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.put(`http://localhost:3001/kategori/${editCategoryId}`, {
-                nama_kategori: editCategory,
-            });
-
-            setShowForm(false);
-            setEditCategory('');
-            setEditCategoryId(null);
-            window.location.reload();
-        } catch (error) {
-            console.log(error, 'error');
-        }
-    };
-
-    // Function to open the edit form
-    const openEditForm = (kategori) => {
-        setShowForm(true);
-        setEditCategory(kategori.nama_kategori);
-        setEditCategoryId(kategori.id);
-    };
 
     return (
         <div className="bg-neutral-200 h-screen w-screen overflow-hidden flex flex-row">
@@ -153,7 +189,7 @@ const ListKategoriAdmin = () => {
                                                             <button onClick={() => openEditForm(kategori)} className='text-yellow-400 text-xl'>
                                                                 <FaRegEdit />
                                                             </button>
-                                                            <button onClick={() => deleteKategoris(kategori.id)} className='text-red-700 text-xl'>
+                                                            <button onClick={() => deleteKategoris(kategori.id)} className='text-red-800 text-xl'>
                                                                 <FaRegTrashAlt />
                                                             </button>
                                                         </td>
@@ -167,7 +203,7 @@ const ListKategoriAdmin = () => {
 
                             {/* Pop Up Form Create & Edit Data Kategori */}
                             {showForm && (
-                                <div className="fixed inset-0 flex p-20 justify-center bg-black bg-opacity-50">
+                                <div className="fixed inset-0 text-[#675e51] flex p-20 justify-center bg-black bg-opacity-50">
                                     <div className="container mx-auto max-w-lg py-5">
                                         <div className="card bg-white rounded-lg shadow mb-6">
                                             <div className="card-body">
@@ -179,7 +215,7 @@ const ListKategoriAdmin = () => {
                                                 </h2>
                                                 <form onSubmit={editCategoryId ? handleEditFormSubmit : handleFormSubmit}>
                                                     <div className="mb-4">
-                                                        <label htmlFor="nama_kategori" className="block text-gray-700">
+                                                        <label htmlFor="nama_kategori" className="block">
                                                             Nama Kategori
                                                         </label>
                                                         <input type="text"
@@ -187,7 +223,7 @@ const ListKategoriAdmin = () => {
                                                             name='nama_kategori'
                                                             value={editCategoryId ? editCategory : newCategory}
                                                             onChange={(e) => editCategoryId ? setEditCategory(e.target.value) : setNewCategory(e.target.value)}
-                                                            className="form-input w-full mt-2 rounded-md"
+                                                            className="form-input border-[#675e51] w-full mt-2 rounded-md"
                                                         />
                                                     </div>
                                                     <div className='flex justify-end'>
