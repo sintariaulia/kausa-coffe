@@ -46,12 +46,21 @@ const EditProdukAdmin = () => {
         });
         if (confirmResult.isConfirmed) {
             try {
-                await axios.put(`http://localhost:3001/produk/${id}`, {
+                const getToken = localStorage.getItem("token");
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${getToken}`,
+                    },
+                };
+                // Form Body Request Edit
+                const editProduk = {
                     nama_produk: namaProduk,
                     deskripsi: deskripsi,
                     harga: harga,
                     gambar: gambar,
-                });
+                }
+
+                await axios.put(`http://localhost:3001/produk/${id}`, editProduk, config);
 
                 Swal.fire({
                     title: "Changes saved successfully!",

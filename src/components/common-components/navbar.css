@@ -3,6 +3,10 @@
     color: #ff3333; /* Ganti dengan warna yang diinginkan */
 }
 
+.active-menu2 {
+    color: #9e978c; /* Ganti dengan warna yang diinginkan */
+}
+
 .cart-badge {
     position: absolute;
     top: -5px;

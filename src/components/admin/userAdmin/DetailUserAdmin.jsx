@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import AdminSidebar from '../shared/AdminSidebar'
 import NavbarAdmin from '../shared/NavbarAdmin'
@@ -15,6 +16,32 @@ const DetailUserAdmin = () => {
     const handleBack = () => {
         navigate(-1);
     };
+
+    // Fetch API User
+    useEffect(() => {
+        const fetchUserById = async () => {
+            try {
+                const getToken = localStorage.getItem("token");
+                const config = {
+                    headers: {
+                        Authorization: `Bearer ${getToken}`,
+                    },
+                };
+                const response = await axios.get(`http://localhost:3001/user/${id}`, (config));
+                const userData = response.data?.datas;
+                setNama(userData.nama);
+                setRole(userData.role);
+                setNoHp(userData.no_hp);
+                setEmail(userData.email);
+                setPassword(userData.password);
+                // console.log(userData);
+            } catch (error) {
+                console.log("error", error);
+            }
+        }
+
+        fetchUserById();
+    }, [id])
 
     return (
         <div className="bg-neutral-200 h-screen w-screen overflow-hidden flex flex-row">

@@ -1,29 +1,49 @@
-import React, { useEffect } from 'react'
+// // import React, { useEffect } from 'react'
+// // import { useNavigate } from 'react-router-dom';
+// // import { useSelector } from 'react-redux';
+
+// // const AdminDashboardGuard = ({ children }) => {
+// //   const navigate = useNavigate();
+// //   const authState = useSelector((state) => state.auth);
+
+// //   useEffect(() => {
+// //     console.log("AuthState", authState);
+// //     // Cek peran dan arahkan pengguna ke dashboard yang sesuai
+// //     try {
+// //       if (
+// //         !authState ||
+// //         !authState.user ||
+// //         !authState.user.role ||
+// //         authState.user.role !== 'admin'
+// //       ) {
+// //         throw new Error('Unauthorized');
+// //       }
+// //     } catch (error) {
+// //       navigate('/signin?message=Unauthorized');
+// //     }
+// //   }, [navigate, authState]);
+
+// //   return <>{children}</>;
+// }
+
+// export default AdminDashboardGuard;
+
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const AdminDashboardGuard = ({ children }) => {
   const navigate = useNavigate();
-  const authState = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    console.log("AuthState", authState);
     // Cek peran dan arahkan pengguna ke dashboard yang sesuai
-    try {
-      if (
-        !authState ||
-        !authState.user ||
-        !authState.user.role ||
-        authState.user.role !== 'admin'
-      ) {
-        throw new Error('Unauthorized');
-      }
-    } catch (error) {
+    if (!user || user.role !== 'admin') {
       navigate('/signin?message=Unauthorized');
     }
-  }, [navigate, authState]);
+  }, [navigate, user]);
 
   return <>{children}</>;
-}
+};
 
 export default AdminDashboardGuard;

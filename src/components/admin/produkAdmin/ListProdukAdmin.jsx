@@ -6,7 +6,6 @@ import NavbarAdmin from '../shared/NavbarAdmin'
 import AdminSidebar from '../shared/AdminSidebar'
 import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import DashboardStatGrid from '../home/DashboardStatGrid'
 
 const ListProdukAdmin = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -33,9 +32,13 @@ const ListProdukAdmin = () => {
     const deleteProduks = async (id) => {
         console.log(id);
         try {
+            const getToken = localStorage.getItem("token");
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/produk/${id}`
+                url: `http://localhost:3001/produk/${id}`,
+                headers: {
+                    Authorization: `Bearer ${getToken}`,
+                },
             };
 
             Swal.fire({

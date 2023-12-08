@@ -12,7 +12,7 @@ const CreateProdukAdmin = () => {
     const [harga, setHarga] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [gambar, setGambar] = useState("");
-    
+
     // Select Data Kategori
     const [kategoris, setKategoris] = useState([]);
     useEffect(() => {
@@ -33,15 +33,24 @@ const CreateProdukAdmin = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/produk', {
+            const getToken = localStorage.getItem("token");
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${getToken}`,
+                },
+            };
+
+            const dataProduk = {
                 kode_produk: kodeProduk,
                 kategori_id: kategori,
                 nama_produk: namaProduk,
                 deskripsi: deskripsi,
                 harga: harga,
                 gambar: gambar,
-            });
+            }
 
+            const response = await axios.post('http://localhost:3001/produk', dataProduk, config);
+            console.log(response.data);
             Swal.fire({
                 title: "Berhasil!",
                 text: "Data berhasil ditambahkan.",
@@ -54,7 +63,7 @@ const CreateProdukAdmin = () => {
             }, 3000);
 
         } catch (error) {
-            console.log("error", error);
+            console.log("error", error)
         }
     };
 

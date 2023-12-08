@@ -1,15 +1,23 @@
-import React, {useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageAboutUs from '../../assets/kausa1.png';
-import KausaStory from '../../assets/place.jpg'
 import BaristaIvan from '../../assets/team1.png';
 import BaristaLusi from '../../assets/team2.png';
 import BaristaRehan from '../../assets/team3.png';
+import axios from 'axios';
 
 const AboutUs = () => {
-
+    const [aboutUs, setAboutUs] = useState([]);
     useEffect(() => {
+        const getAboutUs = async () => {
+            try {
+                const response = await axios.get('http://localhost:3001/aboutus');
+                setAboutUs(response.data.datas);
+            } catch (error) {
+                console.log(error)
+            }
+        };
+        getAboutUs();
         window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -38,21 +46,23 @@ const AboutUs = () => {
             <div className="bg-[#fafafa] pb-20 pt-5">
                 <div className='mx-auto rounded-[60px] max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-[83rem]'>
                     <p className='text-[#edaf4c] text-left pl-16 font-medium text-[25px]'> - Our <span className='font-bold text-[#d79d3f]'>Story</span></p>
-                    <div className="grid grid-cols items-center grid-cols-2">
-                        <img src={KausaStory} alt="KausaStory" className='w-[73%] rounded-full' />
-                        <span className='font-light text-justify text-2xl text-[#675e51]'>
-                            <p className='pb-5'>
-                                Kausa membawa misi untuk menciptakan pengalaman yang nyaman bagi teman Kausa.
-                                Sebuah tempat yang sempurna untuk berkumpul dengan teman dan menikmati secangkir kopi dari Kausa.
-                                Kausa bukan hanya sekadar tempat untuk menikmati kopi, tetapi juga menjadi tempat santai hangout bersama teman-teman terbaik Anda.
-                            </p>
-                            <p>
-                                Kami percaya bahwa kenyamanan dan kepuasan tidak hanya terletak pada rasa kopi yang luar biasa, tetapi juga dalam momen yang kita bagi bersama,
-                                menciptakan kenangan indah yang akan kita kenang selamanya. Selamat datang di Kausa, di mana kehangatan dan kebahagiaan bersatu dalam setiap gelas kopi,
-                                menjadikan tempat ini sebagai pilihan yang pas untuk menyegarkan semangat setelah rutinitas kuliah yang melelahkan.
-                            </p>
-                        </span>
-                    </div>
+                    {aboutUs.map((about, index) => {
+                        return (
+                            <div key={index} id={about.id} className="grid grid-cols items-center grid-cols-2">
+                                <img src={about.gambar} alt="KausaStory" className='w-[73%] rounded-full' />
+                                <span className='font-light text-justify text-2xl text-[#675e51]'>
+                                    <p className='pb-5'>
+                                        {about.story}
+                                    </p>
+                                    <p>
+                                        Kami percaya bahwa kenyamanan dan kepuasan tidak hanya terletak pada rasa kopi yang luar biasa, tetapi juga dalam momen yang kita bagi bersama,
+                                        menciptakan kenangan indah yang akan kita kenang selamanya. Selamat datang di Kausa, di mana kehangatan dan kebahagiaan bersatu dalam setiap gelas kopi,
+                                        menjadikan tempat ini sebagai pilihan yang pas untuk menyegarkan semangat setelah rutinitas kuliah yang melelahkan.
+                                    </p>
+                                </span>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -68,9 +78,6 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     )
 }

@@ -7,9 +7,15 @@ import LoginGuard from '../components/SignInGuard';
 // ! USER
 import AboutUsPage from '../pages/customers/aboutuspages';
 import StorePageUs from '../pages/customers/storeuspages';
+import RiwayatPesananPages from '../pages/customers/riwayatpesananpages';
 // Produk
 import ListProdukPages from '../pages/produks/ListProdukPages';
 import DetailProdukPages from '../pages/produks/DetailProdukPages';
+// Pesanan
+import OrderProdukPages from '../pages/produks/OrderProdukPages';
+import FormPesananPage from '../pages/pemesanans/FormPesananPage';
+import UploadPaymentPage from '../pages/pemesanans/UploadPaymentPage';
+import PaymentSuccess from '../components/pemesanan/PaymentSuccess';
 // ! ADMIN
 import DashboardAdminPage from '../pages/admin/DashboardAdminPage';
 import AdminDashboardGuard from '../pages/admin/AdminDashboardGuard';
@@ -26,7 +32,7 @@ import EditProdukAdminPage from '../pages/admin/produkAdminPage/EditProdukAdminP
 // Data Pesanan
 import ListPesananAdminPage from '../pages/admin/pesananAdminPage/ListPesananAdminPage';
 // Data Pembayaran
-import ListPembayaranAdminPage from '../pages/admin/pembayaranAdminPage/ListPembayaranAdminPage';
+import ListPaymentAdminPage from '../pages/admin/paymentAdminPage/ListPaymentAdminPage';
 
 // ! KASIR
 import DashboardKasirPage from '../pages/kasir/DashboardKasirPage';
@@ -66,8 +72,15 @@ function IndexRouter() {
           {/* User */}
           <Route path='/aboutus' element={<AboutUsPage />} />
           <Route path='/store' element={<StorePageUs />} />
+          <Route path='/riwayatpesanan' element={<RiwayatPesananPages />} />
+
           <Route path='/produks' element={<ListProdukPages />} />
           <Route path='/produks/:id' element={<DetailProdukPages />} />
+
+          <Route path='/order/:id' element={<OrderProdukPages />} />
+          <Route path='/pesanan/form-pesanan' element={<FormPesananPage />} />
+          <Route path='/pesanan/upload-payment' element={<UploadPaymentPage />} />
+          <Route path='/pesanan/success' element={<PaymentSuccess />} />
 
           {/* Admin */}
           <Route
@@ -125,7 +138,7 @@ function IndexRouter() {
             path='/admin/pembayaran'
             element={
               <AdminDashboardGuard>
-                <ListPembayaranAdminPage />
+                <ListPaymentAdminPage />
               </AdminDashboardGuard>
             }
           />

@@ -1,8 +1,7 @@
 import React from 'react'
-import { IoBagHandle, IoPieChart, IoCart } from 'react-icons/io5'
 import { HiBanknotes, HiCreditCard, HiOutlineShoppingCart } from 'react-icons/hi2'
 
-const DashboardStatGrid = ({ totalProducts }) => {
+const DashboardStatGrid = ({ totalRevenue, totalProducts, totalPesanans }) => {
   return (
     <div className="flex gap-4 px-10 text-[#675e51]">
       <BoxWrapper className='bg-[#f6f6f6] rounded-2xl'>
@@ -12,7 +11,7 @@ const DashboardStatGrid = ({ totalProducts }) => {
         <div className="pl-4">
           <span className="text-sm text-[#675e51] font-light">Total Pendapatan</span>
           <div className="flex items-center">
-            <strong className="text-xl font-bold">Rp 525.000</strong>
+            <strong className="text-xl font-bold">{`Rp. ${totalRevenue}`}</strong>
           </div>
         </div>
       </BoxWrapper>
@@ -36,7 +35,7 @@ const DashboardStatGrid = ({ totalProducts }) => {
         <div className="pl-4">
           <span className="text-sm font-light">Total Pemesanan</span>
           <div className="flex items-center">
-            <strong className="text-xl font-bold">160</strong>
+            <strong className="text-xl font-bold">{totalPesanans}</strong>
           </div>
         </div>
       </BoxWrapper>

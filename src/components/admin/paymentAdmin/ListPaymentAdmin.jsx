@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
 
-const ListPembayaranAdmin = () => {
+const ListPaymentAdmin = () => {
     return (
         <div className="flex-1 px-4 py-2 min-h-0 overflow-auto">
             {/* Content Data Pembayaran */}
@@ -68,4 +68,4 @@ const ListPembayaranAdmin = () => {
     )
 }
 
-export default ListPembayaranAdmin
+export default ListPaymentAdmin;

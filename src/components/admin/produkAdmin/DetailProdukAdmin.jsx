@@ -16,7 +16,7 @@ const DetailProdukAdmin = () => {
     const [gambar, setGambar] = useState("");
 
     const handleBack = () => {
-        navigate(-1);
+        navigate('/admin/produks');
     };
 
     // Fetch API

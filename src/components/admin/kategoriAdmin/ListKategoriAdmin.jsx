@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
-import { useNavigate } from 'react-router-dom'
 import AdminSidebar from '../shared/AdminSidebar'
 import NavbarAdmin from '../shared/NavbarAdmin'
 import { FaPlus, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
@@ -14,8 +13,8 @@ const ListKategoriAdmin = () => {
     const [editCategory, setEditCategory] = useState('');
     const [editCategoryId, setEditCategoryId] = useState(null);
     const token = localStorage.getItem("token");
-    const navigate = useNavigate();
 
+    // Fetch Gel All Kategori
     useEffect(() => {
         const fetchKategoris = async () => {
             let config = {
@@ -41,30 +40,27 @@ const ListKategoriAdmin = () => {
     // Function Create Data Kategori
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-        
-        let config = {
-            method: "post",
-            maxBodyLength: Infinity,
-            url: `http://localhost:3001/kategori`,
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
         try {
-            const response = await axios.request(config, {nama_kategori: newCategory,});
-            console.log(JSON.stringify(response.data));
-        
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            const dataKategori = {
+                nama_kategori: newCategory,
+            }
+
+            const response = await axios.post('http://localhost:3001/kategori', dataKategori, config);
+            console.log(response.data);
             // Close the form and refresh the data
             setShowForm(false);
-            // swal fire
             await Swal.fire({
                 title: "Berhasil!",
                 text: "Data berhasil ditambahkan.",
                 icon: "success",
                 confirmButtonText: "OK",
             });
-
             setNewCategory('');
             window.location.reload();
         } catch (error) {
@@ -76,11 +72,18 @@ const ListKategoriAdmin = () => {
     const handleEditFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:3001/kategori/${editCategoryId}`, {
-                nama_kategori: editCategory,
-            });
-            setShowForm(false);
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
 
+            const editKategori = {
+                nama_kategori: editCategory,
+            }
+
+            await axios.put(`http://localhost:3001/kategori/${editCategoryId}`, editKategori, config);
+            setShowForm(false);
             await Swal.fire({
                 title: "Update Saved!",
                 icon: "success",

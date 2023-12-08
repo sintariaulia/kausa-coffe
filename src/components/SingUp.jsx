@@ -59,14 +59,14 @@ const SignUp = () => {
                         <div>
                             <label htmlFor='nama' className='text-[14.7px] font-medium text-slate-600'>Full Name</label>
                             <input value={nama} onChange={(e) => setNama(e.target.value)}
-                                type='nama' id='nama'
-                                className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
+                                type='text' id='nama'
+                                className='w-full border-2 border-white rounded-xl p-2 mt-1'
                                 placeholder='full name' />
                         </div>
                         <div className='pt-3'>
-                            <label htmlFor='no_hp' className='text-[14.7px] font-medium text-slate-600'>No Handphone</label>
+                            <label htmlFor='no_hp' className='text-[14.7px] font-medium text-slate-600'>No Whatsapp</label>
                             <input value={noHp} onChange={(e) => setNohp(e.target.value)}
-                                type='no_hp' id='no_hp'
+                                type='tel' id='no_hp'
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
                                 placeholder='+628xxxxxxxx' />
                         </div>
@@ -96,10 +96,8 @@ const SignUp = () => {
                                     Alredy have an account? <span className='font-extrabold '>SIGN IN</span> here
                                 </button>
                             </Link>
-
                         </div>
                     </form>
-
                 </div>
                 {/* img login */}
                 <div className='home-img px-10 flex flex-col justify-center'>

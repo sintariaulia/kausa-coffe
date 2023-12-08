@@ -79,7 +79,7 @@ const SignIn = () => {
         switch (role) {
             case "admin":
                 navigate("/admin/dashboard");
-            default:
+            // default:
                 break;
             case "user":
                 navigate("/");

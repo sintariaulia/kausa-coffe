@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import { Link } from 'react-router-dom'
 import NavbarAdmin from '../shared/NavbarAdmin'
 import AdminSidebar from '../shared/AdminSidebar'
-import { FaRegEye, FaRegEdit, FaRegTrashAlt } from 'react-icons/fa'
+import { FaRegEye, FaRegTrashAlt } from 'react-icons/fa'
 
 const ListUserAdmin = () => {
     const [users, setUsers] = useState([]);
@@ -32,6 +32,42 @@ const ListUserAdmin = () => {
         };
         fetchGetUsers();
     }, []);
+
+    // Function Delete User
+    const deleteUser = async (id) => {
+        console.log(id);
+        try {
+            const config = {
+                method: "delete",
+                url: `http://localhost:3001/user/${id}`,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            };
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to delete this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "Cancel",
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await axios.request(config);
+                    // Jika Anda ingin melakukan sesuatu setelah kategori dihapus, lakukan di sini
+                    Swal.fire("Deleted!", "The user has been deleted.", "success");
+                    window.location.reload();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    Swal.fire("Cancelled", "Your user data is safe :)", "error");
+                }
+            });
+        } catch (error) {
+            console.log(error, 'error');
+        }
+    }
 
 
     return (
@@ -86,7 +122,7 @@ const ListUserAdmin = () => {
                                                         <td className="px-6 py-4 flex gap-3 justify-center">
                                                             <Link to={`/admin/users/${user.id}/detail`} className='text-yellow-400 text-xl'><FaRegEye /></Link>
                                                             {/* <Link to="" className='text-yellow-400 text-xl'><FaRegEdit /></Link> */}
-                                                            <button className='text-red-700 text-xl'><FaRegTrashAlt /></button>
+                                                            <button onClick={() => deleteUser(user.id)} className='text-red-700 text-xl'><FaRegTrashAlt /></button>
                                                         </td>
                                                     </tr>
                                                 )
