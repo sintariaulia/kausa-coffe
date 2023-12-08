@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { KASIR_SIDEBAR_LINKS } from './helperKasir'
 
-const linkClass ='flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f0ede6] hover:no-underline active:bg-neutral-600 rounded-xl font-bold text-base'
+const linkClass = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f0ede6] hover:no-underline active:bg-neutral-600 rounded-xl font-bold text-base'
 
 function SidebarKasirLink({ link }) {
     const { pathname } = useLocation()
@@ -21,20 +21,17 @@ function SidebarKasirLink({ link }) {
 }
 
 const KasirSidebar = () => {
-  return (
-    <div className="bg-[#f6f6f6] font-bold w-[19rem] p-3 flex flex-col">
+    return (
+        <div className="bg-[#f6f6f6] font-bold w-[19rem] p-3 flex flex-col">
             <div className="flex items-center justify-center gap-2 px-1 pt-10">
                 <img
                     src={LogoKausa}
                     alt="LogoKausa"
-                    className="cursor-pointer w-[40px] duration-500"
-                />
+                    className="cursor-pointer w-[40px] duration-500" />
                 <img
                     src={LogoHori}
                     alt="LogoHori"
-                    className="text-textSec origin-left w-[180px] duration-200"
-                />
-
+                    className="text-textSec origin-left w-[180px] duration-200" />
             </div>
             <div className="py-14 flex flex-1 flex-col px-5 gap-3">
                 {KASIR_SIDEBAR_LINKS.map((link) => (
@@ -46,7 +43,7 @@ const KasirSidebar = () => {
                 </div>
             </div>
         </div>
-  )
+    )
 }
 
 export default KasirSidebar

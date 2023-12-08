@@ -10,16 +10,13 @@ import Place7 from '../../assets/place7.png';
 import Place8 from '../../assets/place8.png';
 
 const StoreUs = () => {
-
     useEffect(() => {
         window.scrollTo(0, 0);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
         <div className='bg-[#fafafa] pt-16'>
             <img src={StoreBanner} alt="StoreBanner" className='mx-auto pt-5 w-[550px]' />
-
             {/* Store Section */}
             <div className='flex justify-center py-6'>
                 <div className="mapouter ">
@@ -28,7 +25,6 @@ const StoreUs = () => {
                     </div>
                 </div>
             </div>
-
             {/* Gallery Section */}
             <div className="pt-5 pb-12">
                 <div className='bg-[#edeae4] mx-auto rounded-[60px] max-w-md sm:max-w-lg md:max-w-2xl lg:max-w-5xl xl:max-w-[90rem]'>

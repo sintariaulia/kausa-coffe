@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import ProdukOrder from '../../assets/orderproduk.png';
+import FormBanner from '../../assets/bannerform.png';
 import { TimePicker } from 'react-ios-time-picker';
 
 const OrderProduks = () => {
@@ -42,10 +42,9 @@ const OrderProduks = () => {
     setSubtotal(orderProduk?.harga * newQuantity); // Recalculate subtotal when quantity changes
   };
 
-
   return (
-    <div className="bg-[#fafafa] pt-11 pb-3 flex flex-col justify-start">
-      <img src={ProdukOrder} alt="produkorder" className='mx-auto pt-14 w-[30%]' />
+    <div className="bg-[#fafafa] pt-10 flex flex-col justify-start">
+      <img src={FormBanner} alt="produkorder" className='mx-auto pt-16 w-[30%]' />
       <div className="cart-container">
         <div className='mx-36'>
           <div className="titles text-[#675e51] font-semibold">

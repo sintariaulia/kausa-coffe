@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import AdminSidebar from '../shared/AdminSidebar'
 import NavbarAdmin from '../shared/NavbarAdmin'
 
-
 const DetailProdukAdmin = () => {
     const navigate = useNavigate();
     const { id } = useParams();
@@ -18,7 +17,6 @@ const DetailProdukAdmin = () => {
     const handleBack = () => {
         navigate('/admin/produks');
     };
-
     // Fetch API
     useEffect(() => {
         const fetchProdukById = async () => {
@@ -100,11 +98,9 @@ const DetailProdukAdmin = () => {
                                                         </label>
                                                     </td>
                                                     <td className="">
-                                                        <p
-                                                            type="text"
+                                                        <p type="text"
                                                             id="namaProduk"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
+                                                            className="w-full py-2 px-2 border-white rounded-md" >
                                                             <span className='px-8 font-bold'> : </span>{namaProduk}
                                                         </p>
                                                     </td>
@@ -116,11 +112,9 @@ const DetailProdukAdmin = () => {
                                                         </label>
                                                     </td>
                                                     <td className="">
-                                                        <p
-                                                            type="text"
+                                                        <p type="text"
                                                             id="deskripsi"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
+                                                            className="w-full py-2 px-2 border-white rounded-md" >
                                                             <span className='px-8 font-bold'> : </span>{deskripsi}
                                                         </p>
                                                     </td>
@@ -132,11 +126,9 @@ const DetailProdukAdmin = () => {
                                                         </label>
                                                     </td>
                                                     <td className="">
-                                                        <p
-                                                            type="text"
+                                                        <p type="text"
                                                             id="harga"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
+                                                            className="w-full py-2 px-2 border-white rounded-md"  >
                                                             <span className='px-8 font-bold'> : </span>{harga}
                                                         </p>
                                                     </td>
@@ -148,11 +140,9 @@ const DetailProdukAdmin = () => {
                                                         </label>
                                                     </td>
                                                     <td className="">
-                                                        <p
-                                                            type="text"
+                                                        <p type="text"
                                                             id="gambar"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
+                                                            className="w-full py-2 px-2 border-white rounded-md">
                                                             <span className='px-8 font-bold'> : </span>{gambar}
                                                         </p>
                                                     </td>
@@ -168,24 +158,18 @@ const DetailProdukAdmin = () => {
                                                 <button
                                                     onClick={handleBack}
                                                     type="button"
-                                                    className="w-[100px] px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600"
-                                                >
+                                                    className="w-[100px] px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                                                     Kembali
                                                 </button>
                                             </div>
-
                                         </form>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }

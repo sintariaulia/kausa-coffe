@@ -11,7 +11,6 @@ const ListProduks = () => {
     let navigate = useNavigate();
     const [produks, setProduks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-
     // Fetch All Produk
     useEffect(() => {
         const getProduks = async () => {
@@ -36,7 +35,7 @@ const ListProduks = () => {
         window.scrollTo(0, 0);
     }, [selectedCategory]);
 
-    // Handle Order Produk (Satu user cuma bisa order satu produk)
+    // Handle Order Produk (Satu user cuma bisa order satu produk dalam jumlah yang banyak)
     const authState = useSelector((state) => state.auth);
     const handleOrderProduk = async (selectedProduk) => {
         if (authState.isLogin === false) {

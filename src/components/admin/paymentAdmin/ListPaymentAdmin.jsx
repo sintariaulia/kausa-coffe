@@ -14,14 +14,10 @@ const ListPaymentAdmin = () => {
                 <div className=" bg-white mx-20 mt-5 justify-center rounded-xl shadow-sm shadow-textFunc">
                     <div className="flex items-center justify-between px-5 pt-5">
                         <div>
-                            <Link
+                            <Link to="" type="button"
                                 className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 "
-                                type="button"
-                                to=""
                             >
-                                <span className='pr-2'>
-                                    <FaPlus />
-                                </span>
+                                <span className='pr-2'> <FaPlus /> </span>
                                 Tambah
                             </Link>
                         </div>

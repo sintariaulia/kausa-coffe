@@ -15,7 +15,6 @@ const EditProdukAdmin = () => {
     const handleGoBack = () => {
         navigate(-1);
     };
-
     // Function Fetch Data Produk For Form Update
     useEffect(() => {
         const fetchData = async () => {
@@ -109,6 +108,7 @@ const EditProdukAdmin = () => {
                                         className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                                 </div>
                             </div>
+
                             <div className="mb-6">
                                 <label htmlFor="deskripsi" className="block mb-2 font-semibold ">Deskripsi</label>
                                 <textarea
@@ -118,7 +118,6 @@ const EditProdukAdmin = () => {
                                     className="block p-2.5 w-full  bg-gray-50 rounded-lg border border-gray-300" >
                                 </textarea>
                             </div>
-
                             <div className="mb-6">
                                 <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
                                 <input
@@ -128,21 +127,17 @@ const EditProdukAdmin = () => {
                                     onChange={(e) => setGambar(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                             </div>
-
                             <div className='flex justify-end gap-5 pt-5'>
                                 <button type="button" className="btn-error inline-flex items-center text-white font-semibold py-2 px-3 rounded-md"
-                                    onClick={handleGoBack}
-                                >
+                                    onClick={handleGoBack}>
                                     Kembali
                                 </button>
-
                                 <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
                                     <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
                                     Simpan
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

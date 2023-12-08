@@ -16,13 +16,11 @@ const DashboardAdmin = () => {
                 const responseProduk = await axios.get('http://localhost:3001/produk');
                 const listProduks = responseProduk.data?.datas;
                 setTotalProducts(listProduks.length);
-
                 // Fetch Pesanan
                 const responsePesanan = await axios.get('http://localhost:3001/pesanan');
                 const listPesanan = responsePesanan.data?.datas;
                 setTotalPesanans(listPesanan.length);
-
-                // Calculate total revenue
+                // Calculate Total Pendapatan
                 const totalRevenue = listPesanan.reduce((total, pesanan) => total + pesanan.total_harga, 0);
                 setTotalRevenue(totalRevenue);
             } catch (error) {

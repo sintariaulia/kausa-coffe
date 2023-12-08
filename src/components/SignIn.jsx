@@ -19,7 +19,7 @@ const SignIn = () => {
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
-
+    // Function Login
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = JSON.stringify({
@@ -41,9 +41,7 @@ const SignIn = () => {
             const response = await axios.request(config);
             const token = response.data.token
             dispatch(setToken(token));
-
             // console.log("Token set:", token);
-
             const actionResult = await dispatch(fetchUser(token));
             console.log("Fetch user result:", actionResult);
             const role = actionResult.payload.role;
@@ -57,19 +55,6 @@ const SignIn = () => {
                     autoClose: 3000
                 });
             }
-
-            // if (token) {
-            //     const role = actionResult.payload.role;
-            //     const user_id = actionResult.payload.id;
-            //     localStorage.setItem("role", role);
-            //     localStorage.setItem("user_id", user_id);
-            //     console.log(role);
-            //     redirectToRolePage(role);
-            // } else {
-            //     toast.error("Your Account Is Not Valid (Wrong Input Data)", {
-            //         autoClose: 3000
-            //     });
-            // }
         } catch (error) {
             console.log(error);
         }
@@ -79,7 +64,7 @@ const SignIn = () => {
         switch (role) {
             case "admin":
                 navigate("/admin/dashboard");
-            // default:
+                // default:
                 break;
             case "user":
                 navigate("/");
@@ -102,7 +87,6 @@ const SignIn = () => {
                 <div className=' pl-[70px] md:pr-10'>
                     <h1 className='text-2xl md:text-3xl font-extrabold text-center py-5 text-slate-600'>SIGN IN</h1>
                     <img src="/img/kausa.png" alt="" className='md:hidden rounded-xl py-5' />
-
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor='email' className='text-[14.7px] font-medium text-slate-600'>Email</label>
@@ -127,8 +111,6 @@ const SignIn = () => {
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
                                 placeholder='********' />
                         </div>
-
-                        {/* BUTTON */}
                         <div className='flex flex-col gap-y-4 py-10'>
                             <button type='submit'
                                 className="bg-[#54514d] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >
@@ -140,12 +122,10 @@ const SignIn = () => {
                                     <span className='font-extrabold'> SIGN UP</span>
                                 </button>
                             </Link>
-
                         </div>
                     </form>
                     <ToastContainer />
                 </div>
-
                 {/* img login */}
                 <div className='home-img px-10 flex flex-col items-center'>
                     <img src="/img/hero1.png" alt="" className='hidden md:block rounded-2xl md:w-[30rem] 2xl:w-[400px]' />

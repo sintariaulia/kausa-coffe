@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import AdminSidebar from '../shared/AdminSidebar'
 import NavbarAdmin from '../shared/NavbarAdmin'
+import { FaUserCircle } from 'react-icons/fa'
 
 const DetailUserAdmin = () => {
     const navigate = useNavigate();
@@ -16,7 +17,6 @@ const DetailUserAdmin = () => {
     const handleBack = () => {
         navigate(-1);
     };
-
     // Fetch API User
     useEffect(() => {
         const fetchUserById = async () => {
@@ -59,119 +59,100 @@ const DetailUserAdmin = () => {
                         {/* content */}
                         <div className=" bg-white mx-20 mt-10 justify-center rounded-xl shadow-sm">
                             <div className="relative overflow-x-auto p-5">
-                                <div className='flex-1'>
-                                    <div className='w-full px-10 pt-7 text-[#675e51]'>
-                                        <form action="" className='space-y-4'>
-                                            <table className='w-full'>
-                                                <tr>
-                                                    <td className="py-5">
-                                                        <label htmlFor="nama" className="block mb-1 font-bold">
-                                                            Nama
-                                                        </label>
-                                                    </td>
-                                                    <td className="">
-                                                        <p
-                                                            type="text"
-                                                            id="nama"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
-                                                            <span className='px-8 font-bold'> : </span>{nama}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="py-5">
-                                                        <label htmlFor="role" className="block mb-1 font-bold">
-                                                            Role
-                                                        </label>
-                                                    </td>
-                                                    <td className="">
-                                                        <p
-                                                            type="text"
-                                                            id="role"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
-                                                            <span className='px-8 font-bold'> : </span>{role}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="py-5">
-                                                        <label htmlFor="noHp" className="block mb-1 font-bold">
-                                                            No Handphone
-                                                        </label>
-                                                    </td>
-                                                    <td className="">
-                                                        <p
-                                                            type="text"
-                                                            id="noHp"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
-                                                            <span className='px-8 font-bold'> : </span>{noHp}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="py-5">
-                                                        <label htmlFor="email" className="block mb-1 font-bold">
-                                                            email
-                                                        </label>
-                                                    </td>
-                                                    <td className="">
-                                                        <p
-                                                            type="text"
-                                                            id="email"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
-                                                            <span className='px-8 font-bold'> : </span>{email}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td className="py-5">
-                                                        <label htmlFor="password" className="block mb-1 font-bold">
-                                                            Password
-                                                        </label>
-                                                    </td>
-                                                    <td className="">
-                                                        <p
-                                                            type="text"
-                                                            id="password"
-                                                            className="w-full py-2 px-2 border-white rounded-md"
-                                                        >
-                                                            <span className='px-8 font-bold'> : </span>{password}
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-                                            <div className="p-5 flex flex-wrap gap-2"
-                                                style={{
-                                                    display: "flex",
-                                                    justifyContent: "flex-end",
-                                                    position: "relative",
-                                                }}>
-                                                <button
-                                                    onClick={handleBack}
-                                                    type="button"
-                                                    className="w-[100px] px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600"
-                                                >
-                                                    Kembali
-                                                </button>
-                                            </div>
-
-                                        </form>
+                                <div className='flex items-center w-full '>
+                                    <div className='mx-20'>
+                                        <FaUserCircle className='text-[200px] text-[#3c3832]' />
                                     </div>
-
+                                    <div className='flex-1'>
+                                        <div className='w-full pt-7 text-[#675e51]'>
+                                            <form action="" className='space-y-4'>
+                                                <table className='w-full'>
+                                                    <tr>
+                                                        <td className="py-5">
+                                                            <label htmlFor="nama" className="block mb-1 font-bold">
+                                                                Nama
+                                                            </label>
+                                                        </td>
+                                                        <td className="">
+                                                            <p type="text" id="nama"
+                                                                className="w-full py-2 px-2 border-white rounded-md">
+                                                                <span className='px-8 font-bold'> : </span>{nama}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="py-5">
+                                                            <label htmlFor="role" className="block mb-1 font-bold">
+                                                                Role
+                                                            </label>
+                                                        </td>
+                                                        <td className="">
+                                                            <p type="text" id="role"
+                                                                className="w-full py-2 px-2 border-white rounded-md">
+                                                                <span className='px-8 font-bold'> : </span>{role}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="py-5">
+                                                            <label htmlFor="noHp" className="block mb-1 font-bold">
+                                                                No Handphone
+                                                            </label>
+                                                        </td>
+                                                        <td className="">
+                                                            <p type="text" id="noHp"
+                                                                className="w-full py-2 px-2 border-white rounded-md">
+                                                                <span className='px-8 font-bold'> : </span>{noHp}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="py-5">
+                                                            <label htmlFor="email" className="block mb-1 font-bold">
+                                                                Email
+                                                            </label>
+                                                        </td>
+                                                        <td className="">
+                                                            <p type="text" id="email"
+                                                                className="w-full py-2 px-2 border-white rounded-md">
+                                                                <span className='px-8 font-bold'> : </span>{email}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td className="py-5">
+                                                            <label htmlFor="password" className="block mb-1 font-bold">
+                                                                Password
+                                                            </label>
+                                                        </td>
+                                                        <td className="">
+                                                            <p type="text" id="password"
+                                                                className="w-full py-2 px-2 border-white rounded-md">
+                                                                <span className='px-8 font-bold'> : </span>{password}
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div className="p-5 flex flex-wrap gap-2"
+                                                    style={{
+                                                        display: "flex",
+                                                        justifyContent: "flex-end",
+                                                        position: "relative",
+                                                    }}>
+                                                    <button onClick={handleBack} type="button"
+                                                        className="w-[100px] px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
+                                                        Kembali
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
     )
 }

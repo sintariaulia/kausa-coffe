@@ -9,7 +9,6 @@ import { logout } from '../../../services/authSlice'
 const KasirNavbar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleLogout = () => {
         dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
         navigate("/");
@@ -47,8 +46,7 @@ const KasirNavbar = () => {
                                         active && 'bg-gray-100',
                                         'active:bg-gray-200 flex items-center px-4 py-2 text-red-600 cursor-pointer focus:bg-gray-200'
                                     )}
-                                    onClick={() => handleLogout()}
-                                >
+                                    onClick={() => handleLogout()}>
                                     Logout
                                     <span className="text-xl pl-3"><HiOutlineLogout /></span>
                                 </div>

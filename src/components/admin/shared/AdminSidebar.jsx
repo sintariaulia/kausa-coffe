@@ -20,7 +20,6 @@ const linkClass = 'flex items-center gap-2 font-light px-3 py-2 hover:bg-[#f0ede
 const AdminSidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleLogout = () => {
         dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
         navigate("/");
@@ -86,8 +85,7 @@ const AdminSidebar = () => {
                 ))}
                 <div
                     className={classNames(linkClass, 'cursor-pointer text-red-600')}
-                    onClick={() => handleLogout()}  // Langkah 6: Panggil handler logout saat tombol logout diklik
-                >
+                    onClick={() => handleLogout()} >
                     <span className="text-xl"><HiOutlineLogout /></span>
                     Logout
                 </div>

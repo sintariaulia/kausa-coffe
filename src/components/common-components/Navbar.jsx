@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import LogoKausa from '../../assets/logo.png';
 import NavMobile from './NavbarMobile';
-import { FaBars, FaTimes, FaShoppingCart, FaUserCircle, FaClipboardList } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUserCircle, FaClipboardList } from 'react-icons/fa';
 import './navbar.css';
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from '../../services/authSlice';
-import { RiLogoutBoxLine } from "react-icons/ri";
+import { RiLogoutBoxLine, RiProfileLine, RiMapPinLine } from "react-icons/ri";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);    // Untuk Navbar Mobile
@@ -57,9 +57,7 @@ const Navbar = () => {
                 setDropdownOpen(false);
             }
         };
-
         document.addEventListener("click", handleOutsideClick);
-
         return () => {
             document.removeEventListener("click", handleOutsideClick);
         };
@@ -110,14 +108,12 @@ const Navbar = () => {
                     </li>
                     <li className={`py-7 px-3 inline-block ${location.pathname === '/store' ? 'active-menu' : ''}`}>
                         <Link to="/store">
-                            Our Store
+                            <div className='flex gap-2 justify-center'>
+                                <p>Our Store</p>
+                                <p className='text-xl'><RiMapPinLine /></p>
+                            </div>
                         </Link>
                     </li>
-                    {/* <li className={`py-7 px-3 inline-block ${location.pathname === '/cart' ? 'active-menu' : ''}`}>
-                        <Link to="/cart">
-                            <FaShoppingCart />
-                        </Link>
-                    </li> */}
                 </ul>
                 {/* Right Section */}
                 <div className='2xl:pl-40 flex items-center lg:flex-row' ref={dropdownRef}>
@@ -133,7 +129,13 @@ const Navbar = () => {
                                 {dropdownOpen && (
                                     <ul className="dropdown-menu w-48 py-4 mt-4 mr-20 text-base text-left rounded-xl shadow-lg min-w-max items-center bg-white/90 float-left list-none m-0 bg-clip-padding border-none dropdown-menu fixed right-5">
                                         <li>
-                                            <Link className="flex gap-3 px-4 py-2 items-center hover:bg-[#edeae4]" to="/riwayatpesanan">
+                                            <Link className="flex gap-3 px-4 py-2 items-center font-semibold hover:bg-[#edeae4]" to="/profile">
+                                                <RiProfileLine />
+                                                Profile
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link className="flex gap-3 px-4 py-2 items-center font-semibold hover:bg-[#edeae4]" to="/riwayatpesanan">
                                                 <FaClipboardList />
                                                 Pesanan
                                             </Link>
@@ -141,7 +143,7 @@ const Navbar = () => {
                                         <li>
                                             <Link
                                                 type="button"
-                                                className="flex items-center gap-3 px-4 py-2  hover:bg-[#edeae4]"
+                                                className="flex items-center gap-3 px-4 py-2 text-red-700 cursor-pointer hover:bg-[#edeae4]"
                                                 onClick={handleModal}>
                                                 <RiLogoutBoxLine />
                                                 Logout

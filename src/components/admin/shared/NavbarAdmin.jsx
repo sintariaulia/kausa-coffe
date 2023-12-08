@@ -9,9 +9,8 @@ import { logout } from '../../../services/authSlice'
 const NavbarAdmin = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const handleLogout = () => {
-        dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
+        dispatch(logout());
         navigate("/");
     };
 
@@ -30,7 +29,6 @@ const NavbarAdmin = () => {
                         </div>
                     </Menu.Button>
                 </div>
-
                 <Transition
                     as={Fragment}
                     enter="transition ease-out duration-100"
@@ -47,8 +45,7 @@ const NavbarAdmin = () => {
                                         active && 'bg-gray-100',
                                         'active:bg-gray-200 flex items-center  px-4 py-2 text-red-700 cursor-pointer focus:bg-gray-200'
                                     )}
-                                    onClick={() => handleLogout()}
-                                >
+                                    onClick={() => handleLogout()}>
                                     Logout
                                     <span className="text-xl pl-3"><HiOutlineLogout /></span>
                                 </div>
@@ -57,7 +54,6 @@ const NavbarAdmin = () => {
                     </Menu.Items>
                 </Transition>
             </Menu>
-
         </div>
     )
 }

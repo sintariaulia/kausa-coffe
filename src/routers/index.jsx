@@ -7,6 +7,7 @@ import LoginGuard from '../components/SignInGuard';
 // ! USER
 import AboutUsPage from '../pages/customers/aboutuspages';
 import StorePageUs from '../pages/customers/storeuspages';
+import ProfilePages from '../pages/customers/profilepages';
 import RiwayatPesananPages from '../pages/customers/riwayatpesananpages';
 // Produk
 import ListProdukPages from '../pages/produks/ListProdukPages';
@@ -72,6 +73,7 @@ function IndexRouter() {
           {/* User */}
           <Route path='/aboutus' element={<AboutUsPage />} />
           <Route path='/store' element={<StorePageUs />} />
+          <Route path='/profile' element={<ProfilePages />} />
           <Route path='/riwayatpesanan' element={<RiwayatPesananPages />} />
 
           <Route path='/produks' element={<ListProdukPages />} />

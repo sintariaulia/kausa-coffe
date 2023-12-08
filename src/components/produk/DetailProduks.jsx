@@ -9,7 +9,6 @@ const DetailProduks = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [produks, setProduks] = useState(null);
-
   // Fuction Fetch API Produk By Id
   useEffect(() => {
     const getProduksById = async () => {
@@ -17,21 +16,18 @@ const DetailProduks = () => {
         const responseDetail = await axios.get(`http://localhost:3001/produk/${params.id}`);
         const produkDetail = responseDetail.data.datas;
         setProduks(produkDetail);
-
       } catch (error) {
         console.log(error);
       }
-    }
-
+    };
     getProduksById();
   }, []);
 
-  // Handle Order Produk (Satu user cuma bisa order satu produk)
+  // Handle Order Produk (Satu user cuma bisa order satu produk dalam jumlah yang banyak)
   const authState = useSelector((state) => state.auth);
   const handleOrderProduk = async (selectedProduk) => {
     if (authState.isLogin === false) {
       try {
-        // Tampilkan pesan kesalahan menggunakan SweetAlert atau cara lain sesuai preferensi Anda
         const result = await Swal.fire({
           icon: "error",
           title: "Oops...",
@@ -67,7 +63,6 @@ const DetailProduks = () => {
             </div>
             <h3 className='text-[#a3292f] text-lg pb- font-bold'>Rp.  <span className='text-[22px]'>{produks?.harga}</span></h3>
             <p className='text-[#675e51] pr-16 text-base md:text-lg font-normal text-justify  py-3'>{produks?.deskripsi}</p>
-
             <div className='flex justify-start text-white py-5 font-semibold gap-5'>
               <button
                 onClick={() => handleOrderProduk(produks)}
@@ -76,7 +71,6 @@ const DetailProduks = () => {
                 ORDER
               </button>
             </div>
-
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import FormBanner from '../../assets/bannerform.png';
+import ProdukOrder from '../../assets/orderproduk.png';
 import { Link, useNavigate } from 'react-router-dom';
 
 const FormPesanan = () => {
@@ -8,21 +8,16 @@ const FormPesanan = () => {
         navigate(-1);
     }
 
-    const [time, setTime] = useState('01:00');
-    const onChange = (timeValue) => {
-        setTime(timeValue);
-    }
-
     return (
-        <div className="bg-[#fafafa] pt-11 h-[930px] pb-3 flex flex-col justify-start">
-            <img src={FormBanner} alt="produkorder" className='mx-auto pt-14 w-[25%]' />
-            <div className='mx-32 my-6 bg-[#edeae4]'>
+        <div className="bg-[#fafafa] pt-20 h-[930px] pb-3 flex flex-col justify-start">
+            <img src={ProdukOrder} alt="produkorder" className='mx-auto pt-14 w-[28%]' />
+            <div className='mx-40 my-6 bg-[#edeae4]'>
                 <form>
                     <h1 className="p-3 font-bold bg-[#a3292f] text-lg text-white rounded-sm rounded-t-md">DATA PESANAN</h1>
                     <div className="p-10">
                         <div className="relative z-0 w-full mb-7 group">
                             <h3 className='className="cursor-not-allowed block py-2.5 px-0 w-full text-base text-gray-900"'>
-                                Time
+                                Input Time
                             </h3>
                             <label className="absolute text-xl text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
                                 Produk
@@ -30,7 +25,7 @@ const FormPesanan = () => {
                         </div>
                         <div className="relative z-0 w-full mb-7 group">
                             <h3 className='className="cursor-not-allowed block py-2.5 px-0 w-full text-base text-gray-900"'>
-                                Time
+                                Input Quantity
                             </h3>
                             <label className="absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
                                 Quantity
@@ -38,7 +33,7 @@ const FormPesanan = () => {
                         </div>
                         <div className="relative z-0 w-full mb-7 group">
                             <h3 className='className="cursor-not-allowed block py-2.5 px-0 w-full text-base text-gray-900"'>
-                                Time
+                                Input Waktu PickUp
                             </h3>
                             <label className="absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
                                 Waktu Ambil Pesanan
@@ -46,7 +41,7 @@ const FormPesanan = () => {
                         </div>
                         <div className="relative z-0 w-full mb-7 group">
                             <h3 className='className="cursor-not-allowed block py-2.5 px-0 w-full text-base text-gray-900"'>
-                                Time
+                                Input Total Harga
                             </h3>
                             <label className="absolute text-xl text-gray-500  duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0]">
                                 Total Harga
@@ -55,6 +50,7 @@ const FormPesanan = () => {
                     </div>
                 </form>
             </div>
+            {/* Button */}
             <div className='mx-32 py-5'>
                 <div className="text-center flex mt-5 w-full justify-between items-center ">
                     <button onClick={handleBack}

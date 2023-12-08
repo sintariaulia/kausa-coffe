@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
-import Swal from 'sweetalert2'
 
 const ListPesananAdmin = () => {
     const [pesanans, setPesanan] = useState([]);
@@ -35,14 +34,9 @@ const ListPesananAdmin = () => {
                 <div className=" bg-white mx-20 mt-5 justify-center rounded-xl shadow-sm shadow-textFunc">
                     <div className="flex items-center justify-between px-5 pt-5">
                         <div>
-                            <Link
-                                className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 "
-                                type="button"
-                                to=""
-                            >
-                                <span className='pr-2'>
-                                    <FaPlus />
-                                </span>
+                            <Link to="" type="button"
+                                className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 ">
+                                <span className='pr-2'> <FaPlus /> </span>
                                 Tambah
                             </Link>
                         </div>
@@ -92,6 +86,7 @@ const ListPesananAdmin = () => {
                                             <td className="px-6 py-4">{pesanan.total_harga}</td>
                                             <td className="px-6 py-4">{pesanan.status_pesanan}</td>
                                             <td className="px-6 py-4 flex gap-3 justify-center">
+                                                <Link to="" className='text-yellow-400 text-xl'><FaRegEye /></Link>
                                                 <Link to="" className='text-yellow-400 text-xl'><FaRegEdit /></Link>
                                                 <button className='text-red-800 text-xl'><FaRegTrashAlt /></button>
                                             </td>

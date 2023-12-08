@@ -147,7 +147,6 @@ const ListKategoriAdmin = () => {
             <div className="flex flex-col flex-1">
                 <NavbarAdmin />
                 <div className="flex-1 p-4 min-h-0 overflow-auto">
-
                     {/* KATEGORI */}
                     <div className=" mt-10 justify-center">
                         <div className='w-[1000px] mx-32 '>
@@ -160,16 +159,12 @@ const ListKategoriAdmin = () => {
                                     <button
                                         onClick={() => setShowForm(true)}
                                         className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 "
-                                        type="button"
-                                    >
-                                        <span className='pr-3'>
-                                            <FaPlus />
-                                        </span>
+                                        type="button">
+                                        <span className='pr-3'> <FaPlus /> </span>
                                         Tambah
                                     </button>
                                 </div>
                             </div>
-
                             <div className="">
                                 <div className="relative overflow-x-auto p-5">
                                     <table className="w-full text-base text-left text-gray-500 ">
@@ -221,13 +216,10 @@ const ListKategoriAdmin = () => {
                                                         <label htmlFor="nama_kategori" className="block">
                                                             Nama Kategori
                                                         </label>
-                                                        <input type="text"
-                                                            id="nama_kategori"
-                                                            name='nama_kategori'
+                                                        <input type="text" id="nama_kategori" name='nama_kategori'
                                                             value={editCategoryId ? editCategory : newCategory}
                                                             onChange={(e) => editCategoryId ? setEditCategory(e.target.value) : setNewCategory(e.target.value)}
-                                                            className="form-input border-[#675e51] w-full mt-2 rounded-md"
-                                                        />
+                                                            className="form-input border-[#675e51] w-full mt-2 rounded-md" />
                                                     </div>
                                                     <div className='flex justify-end'>
                                                         <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">

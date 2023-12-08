@@ -10,7 +10,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
+    // Function Register
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -54,7 +54,6 @@ const SignUp = () => {
                 <div className=' pl-[70px] md:pr-10'>
                     <h1 className='text-2xl md:text-3xl font-extrabold text-center py-5 text-slate-600'>SIGN UP</h1>
                     <img src="/img/hero.png" alt="" className='md:hidden rounded-xl py-5' />
-
                     <form onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor='nama' className='text-[14.7px] font-medium text-slate-600'>Full Name</label>
@@ -84,8 +83,6 @@ const SignUp = () => {
                                 className='w-full border-2 border-gray-100 rounded-xl p-2 mt-1'
                                 placeholder='**********' />
                         </div>
-
-                        {/* BUTTON */}
                         <div className='flex flex-col gap-y-4 py-10'>
                             <button type='submit'
                                 className="bg-[#54514d] rounded-2xl text-[16px]  py-[5px] mr-2 hover:bg-[#777878] text-white font-semibold" >

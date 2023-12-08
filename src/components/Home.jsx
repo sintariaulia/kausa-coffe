@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "./home.css";
 import ImageHero from '../assets/hero1.png'
@@ -8,16 +8,14 @@ import PromoSignatureFresh from '../assets/promo2.png';
 import PromoKopiSusu500 from '../assets/promo3.png';
 
 const Home = () => {
-
     useEffect(() => {
-        window.scrollTo(0, 0);  // eslint-disable-next-line react-hooks/exhaustive-deps
+        window.scrollTo(0, 0);
     }, []);
 
     return (
         <div>
             {/* Home Section */}
             <div className="wrapper lg:flex bg-[#fafafa] items-center justify-between pt-24 px-12 sm:px-[60px] md:px-[70px]  w-full h-full">
-
                 {/* left side */}
                 <div className="open-img mx-auto heading flex md:my-5 flex-col items-start justify-center">
                     <span className='font-bold text-[#675e51] text-[26px] sm:text-[37px] lg:text-[40px] xl:text-[52px] 2xl:text-[68px]'>
@@ -74,7 +72,6 @@ const Home = () => {
                 </div>
             </div>
             {/* Spesial Drink Section */}
-
         </div>
     )
 }

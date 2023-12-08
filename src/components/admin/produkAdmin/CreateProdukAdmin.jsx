@@ -13,6 +13,9 @@ const CreateProdukAdmin = () => {
     const [deskripsi, setDeskripsi] = useState("");
     const [gambar, setGambar] = useState("");
 
+    const handleBack = () => {
+        navigate(-1);
+    };
     // Select Data Kategori
     const [kategoris, setKategoris] = useState([]);
     useEffect(() => {
@@ -106,8 +109,7 @@ const CreateProdukAdmin = () => {
                                         id="kategori_id"
                                         value={kategori}
                                         onChange={(e) => setKategori(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full"
-                                    >
+                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full">
                                         <option value="">-- Pilih Kategori --</option>
                                         {kategoris.map((category) => (
                                             <option key={category.id} value={category.id}>
@@ -115,7 +117,6 @@ const CreateProdukAdmin = () => {
                                             </option>
                                         ))}
                                     </select>
-
                                 </div>
                                 <div>
                                     <label htmlFor="harga" className="block mb-2 font-semibold ">Harga</label>
@@ -159,14 +160,17 @@ const CreateProdukAdmin = () => {
                                     type="file" />
                             </div> */}
 
-                            <div className='flex justify-end'>
+                            <div className='flex justify-between'>
+                                <button onClick={handleBack} type="button"
+                                    className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
+                                    Kembali
+                                </button>
                                 <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
                                     <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
                                     Simpan
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
