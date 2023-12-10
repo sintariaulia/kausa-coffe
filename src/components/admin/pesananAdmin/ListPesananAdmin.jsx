@@ -26,12 +26,12 @@ const ListPesananAdmin = () => {
     return (
         <div className="flex-1 px-4 py-2 min-h-0 overflow-auto">
             {/* Content Data Pemesanan */}
-            <div className="justify-center">
-                <div className='w-[1000px] mx-32 '>
-                    <h1 className="text-[3.4rem] text-[#675e51] font-bold">Pesanan</h1>
+            <div className="mt-5 justify-center">
+                <div className='w-[1000px] mx-32'>
+                    <h1 className="text-[55px] text-[#675e51] font-bold">Pesanan</h1>
                     <p className="pb-2 text-[#675e51]">Dashboard / Pesanan</p>
                 </div>
-                <div className=" bg-white mx-20 mt-5 justify-center rounded-xl shadow-sm shadow-textFunc">
+                <div className=" bg-white mx-20 mt-5 justify-center rounded-xl">
                     <div className="flex items-center justify-between px-5 pt-5">
                         <div>
                             <Link to="" type="button"

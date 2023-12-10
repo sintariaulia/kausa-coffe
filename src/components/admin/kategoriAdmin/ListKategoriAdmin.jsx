@@ -153,14 +153,14 @@ const ListKategoriAdmin = () => {
                             <h1 className="text-6xl text-[#675e51] font-bold">Kategori</h1>
                             <p className="my-3 text-[#675e51]">Dashboard / Kategori</p>
                         </div>
-                        <div className=" bg-white mx-20 mt-5 justify-center rounded-xl shadow-sm shadow-textFunc">
+                        <div className=" bg-white mx-20 mt-5 justify-center rounded-xl">
                             <div className="flex items-center justify-between px-5 pt-5">
-                                <div>
+                                <div className=' border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 rounded-lg '>
                                     <button
                                         onClick={() => setShowForm(true)}
-                                        className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 "
+                                        className="inline-flex items-center text-gray-700 bg-[#edeae4] hover:bg-gray-200 font-medium text-base px-4 py-2 "
                                         type="button">
-                                        <span className='pr-3'> <FaPlus /> </span>
+                                        <span className='pr-2'> <FaPlus /> </span>
                                         Tambah
                                     </button>
                                 </div>
@@ -168,7 +168,7 @@ const ListKategoriAdmin = () => {
                             <div className="">
                                 <div className="relative overflow-x-auto p-5">
                                     <table className="w-full text-base text-left text-gray-500 ">
-                                        <thead className=" text-gray-700  bg-[#d5d0c4] text-center">
+                                        <thead className=" text-gray-700 bg-[#d5d0c4] text-center">
                                             <tr>
                                                 <th scope="col" className="px-6 py-3">No</th>
                                                 <th scope="col" className="px-6 py-3">Nama Kategori</th>
@@ -202,27 +202,30 @@ const ListKategoriAdmin = () => {
                             {/* Pop Up Form Create & Edit Data Kategori */}
                             {showForm && (
                                 <div className="fixed inset-0 text-[#675e51] flex p-20 justify-center bg-black bg-opacity-50">
-                                    <div className="container mx-auto max-w-lg py-5">
-                                        <div className="card bg-white rounded-lg shadow mb-6">
+                                    <div className="container mx-auto max-w-xl py-5">
+                                        <div className="card bg-[#edeae4] rounded-2xl shadow mb-6">
                                             <div className="card-body">
                                                 <button onClick={() => setShowForm(false)} className='flex justify-end -mt-4'>
                                                     <span className='text-4xl'> <CiCircleRemove /> </span>
                                                 </button>
-                                                <h2 className="font-bold text-xl text-center mb-4">
+                                                <h2 className="font-bold text-2xl text-center -mt-7 mb-5">
                                                     {editCategoryId ? "Edit Data Kategori" : "Form Data Kategori"}
                                                 </h2>
-                                                <form onSubmit={editCategoryId ? handleEditFormSubmit : handleFormSubmit}>
-                                                    <div className="mb-4">
-                                                        <label htmlFor="nama_kategori" className="block">
-                                                            Nama Kategori
+                                                <form onSubmit={editCategoryId ? handleEditFormSubmit : handleFormSubmit} className='px-10'>
+                                                    <div className="mb-5">
+                                                        <label htmlFor="nama_kategori" className="block font-semibold text-lg pb-2">
+                                                            Nama Kategori :
                                                         </label>
-                                                        <input type="text" id="nama_kategori" name='nama_kategori'
-                                                            value={editCategoryId ? editCategory : newCategory}
-                                                            onChange={(e) => editCategoryId ? setEditCategory(e.target.value) : setNewCategory(e.target.value)}
-                                                            className="form-input border-[#675e51] w-full mt-2 rounded-md" />
+                                                        <div className='border border-gray-500 rounded-xl'>
+                                                            <input type="text" id="nama_kategori" name='nama_kategori'
+                                                                value={editCategoryId ? editCategory : newCategory}
+                                                                onChange={(e) => editCategoryId ? setEditCategory(e.target.value) : setNewCategory(e.target.value)}
+                                                                className="form-input w-full bg-[#edeae4] my-1" />
+                                                        </div>
+
                                                     </div>
                                                     <div className='flex justify-end'>
-                                                        <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
+                                                        <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-lg">
                                                             <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
                                                             {editCategoryId ? "Simpan Perubahan" : "Simpan"}
                                                         </button>

@@ -55,114 +55,116 @@ const Profile = () => {
     }
 
     return (
-        <div className="mx-20 pt-[175px] pb-32">
-            <div className="flex justify-center gap-10 items-center">
-                {/* Isi Card Pertama */}
-                <div className="w-1/2 bg-white  border border-gray-300 rounded-lg ml-10">
-                    <div className="w-full  ">
-                        <div className="bg-red-800 rounded-lg">
-                            <h1 className="text-white text-[20px] font-bold py-2.5 px-4">Photo</h1>
-                        </div>
-                        <div className="my-10 text-[200px] text-gray-800 justify-center flex w-full">
-                            <FaUserCircle />
-                        </div>
-                        <div className="mb-11 text-gray-600 justify-center items-center text-center flex-wrap w-full">
-                            <p>Hello, {userName} <br /> Welcome to your profile page</p>
-                            <div>
-                                <button type="button" onClick={() => openEditForm(authState.user)}
-                                    className="bg-red-800 mt-3 hover:bg-red-400 px-10 py-2 rounded-full text-white">
-                                    Edit Profil
-                                </button>
+        <div className='bg-[#fafafa]'>
+            <div className="mx-20 pt-[175px] pb-32">
+                <div className="flex justify-center gap-10 items-center">
+                    {/* Isi Card Pertama */}
+                    <div className="w-1/2 bg-white  border border-gray-300 rounded-lg ml-10">
+                        <div className="w-full  ">
+                            <div className="bg-red-800 rounded-lg">
+                                <h1 className="text-white text-[20px] font-bold py-2.5 px-4">Photo</h1>
                             </div>
-                        </div>
-                    </div>
-                    {/* Pop Up Form Edit Profile */}
-                    {showForm && (
-                        <div className="fixed inset-0 text-gray-700 flex items-center justify-center bg-black bg-opacity-50">
-                            <div className="container mx-auto max-w-2xl py-5">
-                                <div className="card bg-[#f1efeb] rounded-2xl shadow mb-6">
-                                    <div className="card-body">
-                                        <button onClick={() => setShowForm(false)} className='flex justify-end -mt-4'>
-                                            <span className='text-4xl cursor-pointer'> <CiCircleRemove /> </span>
-                                        </button>
-                                        <h2 className="font-bold text-2xl text-center -mt-7 mb-4">
-                                            Edit Profile
-                                        </h2>
-                                        <form onSubmit={handleFormEditUser} className='px-10'>
-                                            <div className="mb-5">
-                                                <label htmlFor="nama_kategori" className="block text-lg pb-2 font-semibold">
-                                                    Nama :
-                                                </label>
-                                                <div className='border border-gray-500 rounded-xl'>
-                                                    <input type="text"
-                                                        id="nama"
-                                                        name='nama'
-                                                        value={editedUserName}
-                                                        onChange={(e) => setEditedUserName(e.target.value)}
-                                                        className="form-input bg-[#edeae4] w-full my-1" />
-                                                </div>
-                                            </div>
-                                            <div className="mb-7">
-                                                <label className="block text-lg pb-2 font-semibold">
-                                                    No WhatsApp :
-                                                </label>
-                                                <div className='border border-gray-500 rounded-xl'>
-                                                    <input type="tel"
-                                                        id="no_hp"
-                                                        name='no_hp'
-                                                        value={editedUserNoHp}
-                                                        onChange={(e) => setEditedUserNoHp(e.target.value)}
-                                                        className="form-input bg-[#edeae4] w-full my-1" />
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-end pb-3'>
-                                                <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-xl">
-                                                    <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
-                                                    Simpan Perubahan
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
+                            <div className="my-10 text-[200px] text-gray-800 justify-center flex w-full">
+                                <FaUserCircle />
+                            </div>
+                            <div className="mb-11 text-gray-600 justify-center items-center text-center flex-wrap w-full">
+                                <p>Hello, {userName} <br /> Welcome to your profile page</p>
+                                <div>
+                                    <button type="button" onClick={() => openEditForm(authState.user)}
+                                        className="bg-red-800 mt-3 hover:bg-red-400 px-10 py-2 rounded-full text-white">
+                                        Edit Profil
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                    )}
-                    {/* Pop Up Form Create & Edit Profile */}
-                </div>
+                        {/* Pop Up Form Edit Profile */}
+                        {showForm && (
+                            <div className="fixed inset-0 text-gray-700 flex items-center justify-center bg-black bg-opacity-50">
+                                <div className="container mx-auto max-w-2xl py-5">
+                                    <div className="card bg-[#f1efeb] rounded-2xl shadow mb-6">
+                                        <div className="card-body">
+                                            <button onClick={() => setShowForm(false)} className='flex justify-end -mt-4'>
+                                                <span className='text-4xl cursor-pointer'> <CiCircleRemove /> </span>
+                                            </button>
+                                            <h2 className="font-bold text-2xl text-center -mt-7 mb-4">
+                                                Edit Profile
+                                            </h2>
+                                            <form onSubmit={handleFormEditUser} className='px-10'>
+                                                <div className="mb-5">
+                                                    <label htmlFor="nama_kategori" className="block text-lg pb-2 font-semibold">
+                                                        Nama :
+                                                    </label>
+                                                    <div className='border border-gray-500 rounded-xl'>
+                                                        <input type="text"
+                                                            id="nama"
+                                                            name='nama'
+                                                            value={editedUserName}
+                                                            onChange={(e) => setEditedUserName(e.target.value)}
+                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                    </div>
+                                                </div>
+                                                <div className="mb-7">
+                                                    <label className="block text-lg pb-2 font-semibold">
+                                                        No WhatsApp :
+                                                    </label>
+                                                    <div className='border border-gray-500 rounded-xl'>
+                                                        <input type="tel"
+                                                            id="no_hp"
+                                                            name='no_hp'
+                                                            value={editedUserNoHp}
+                                                            onChange={(e) => setEditedUserNoHp(e.target.value)}
+                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                    </div>
+                                                </div>
+                                                <div className='flex justify-end pb-3'>
+                                                    <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-xl">
+                                                        <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
+                                                        Simpan Perubahan
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {/* Pop Up Form Edit Profile */}
+                    </div>
 
-                {/* Isi Card Kedua */}
-                <div className="w-2/3 bg-lightgray  border border-gray-300 rounded-lg mr-10">
-                    <div className="w-full  ">
-                        <div className="bg-red-800 rounded-lg">
-                            <h1 className="text-white text-[20px] font-bold py-2.5 px-4">Identitas</h1>
-                        </div>
-                        <div className="my-5 mx-5 text-lg text-gray-600 w-full">
-                            <form>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <td className="p-3 font-semibold">Nama Lengkap</td>
-                                            <td className="p-3">:</td>
-                                            <td className="p-3">{userName}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-3 font-semibold">No WhatsApp</td>
-                                            <td className="p-3">:</td>
-                                            <td className="p-3">{noHandphone}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-3 font-semibold">Email</td>
-                                            <td className="p-3">:</td>
-                                            <td className="p-3">{email}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="p-3 font-semibold">Role</td>
-                                            <td className="p-3">:</td>
-                                            <td className="p-3">{role}</td>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </form>
+                    {/* Isi Card Kedua */}
+                    <div className="w-2/3 bg-lightgray  border border-gray-300 rounded-lg mr-10">
+                        <div className="w-full  ">
+                            <div className="bg-red-800 rounded-lg">
+                                <h1 className="text-white text-[20px] font-bold py-2.5 px-4">Identitas</h1>
+                            </div>
+                            <div className="my-5 mx-5 text-lg text-gray-600 w-full">
+                                <form>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <td className="p-3 font-semibold">Nama Lengkap</td>
+                                                <td className="p-3">:</td>
+                                                <td className="p-3">{userName}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-3 font-semibold">No WhatsApp</td>
+                                                <td className="p-3">:</td>
+                                                <td className="p-3">{noHandphone}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-3 font-semibold">Email</td>
+                                                <td className="p-3">:</td>
+                                                <td className="p-3">{email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="p-3 font-semibold">Role</td>
+                                                <td className="p-3">:</td>
+                                                <td className="p-3">{role}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

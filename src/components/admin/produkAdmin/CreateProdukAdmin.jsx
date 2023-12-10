@@ -121,7 +121,7 @@ const CreateProdukAdmin = () => {
                                 <div>
                                     <label htmlFor="harga" className="block mb-2 font-semibold ">Harga</label>
                                     <input
-                                        type="number"
+                                        type="text"
                                         id="harga"
                                         name='harga'
                                         value={harga}

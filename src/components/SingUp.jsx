@@ -47,7 +47,7 @@ const SignUp = () => {
 
     return (
         // screen
-        <div className='bg-[#ffffff] flex w-full px-5 md:px-2 lg:w-full h-screen  items-center justify-center'>
+        <div className='bg-[#ffffff] flex w-full px-5 md:px-2 lg:w-full h-screen items-center justify-center'>
             {/* screen dalam */}
             <div className=' flex bg-[#efe6dc] py-3 md:py-20 rounded-3xl '>
                 {/* form login */}

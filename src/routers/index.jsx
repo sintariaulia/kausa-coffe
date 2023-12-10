@@ -24,6 +24,7 @@ import AdminDashboardGuard from '../pages/admin/AdminDashboardGuard';
 import ListKategoriAdminPage from '../pages/admin/kategoriAdminPage/ListKategoriAdminPage';
 // Data User
 import ListUserAdminPage from '../pages/admin/userAdminPage/ListUserAdminPage';
+import CreateUserAdminPage from '../pages/admin/userAdminPage/CreateUserAdminPage';
 import DetailUserAdminPage from '../pages/admin/userAdminPage/DetailUserAdminPage';
 // Data Produk
 import ListProdukAdminPage from '../pages/admin/produkAdminPage/ListProdukAdminPage';
@@ -94,6 +95,7 @@ function IndexRouter() {
             }
           />
           <Route path='/admin/users' element={<ListUserAdminPage />} />
+          <Route path='/admin/user/create-user' element={<CreateUserAdminPage />} />
           <Route path='/admin/users/:id/detail' element={<DetailUserAdminPage />} />
           <Route
             path='/admin/kategori'
