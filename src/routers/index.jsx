@@ -109,18 +109,18 @@ function IndexRouter() {
           <Route
             path='/admin/produks/create-produk'
             element={
-              <AdminDashboardGuard>
-                <CreateProdukAdminPage />
-              </AdminDashboardGuard>
+
+              <CreateProdukAdminPage />
+
             }
           />
           <Route path='/admin/produks/:id/edit' element={<EditProdukAdminPage />} />
           <Route
             path='/admin/produks/:id/detail'
             element={
-              <AdminDashboardGuard>
-                <DetailProdukAdminPage />
-              </AdminDashboardGuard>
+
+              <DetailProdukAdminPage />
+
             }
           />
 
@@ -129,9 +129,9 @@ function IndexRouter() {
           <Route
             path='/admin/pesanan/create-pesanan'
             element={
-              <AdminDashboardGuard>
-                <CreatePesananAdminPage />
-              </AdminDashboardGuard>
+
+              <CreatePesananAdminPage />
+
             } />
 
           <Route path='/admin/payment' element={<ListPaymentAdminPage />} />

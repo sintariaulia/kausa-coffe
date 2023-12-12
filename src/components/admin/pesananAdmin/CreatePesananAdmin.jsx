@@ -19,27 +19,6 @@ const CreatePesananAdmin = () => {
     navigate(-1);
   }
 
-  // Select Data User
-  // const [users, setUsers] = useState([]);
-  // useEffect(() => {
-  //   const fetchDataUsers = async () => {
-  //     try {
-  //       const config = {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       };
-  //       const response = await axios.get('http://localhost:3001/user', config);
-  //       const listUser = response.data?.datas;
-  //       setUsers(listUser);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   fetchDataUsers();
-  // }, [token]);
-
   // Select Data Produks by ID
   const [produks, setProduks] = useState([]);
   useEffect(() => {
@@ -109,21 +88,6 @@ const CreatePesananAdmin = () => {
         <div className=" bg-white mx-20 mt-8 justify-center text-[#675e51] rounded-2xl shadow-sm">
           <div className="relative overflow-x-auto px-20 py-14">
             <form onSubmit={handleFormSubmit}>
-              {/* <div className='mb-10'>
-                <label className="block mb-2 font-semibold ">User ID</label>
-                <select
-                  id="user"
-                  value={userId}
-                  onChange={(e) => setUserId(e.target.value)}
-                  className="bg-gray-50 border border-gray-300 rounded-lg w-full">
-                  <option value="">-- Pilih User --</option>
-                  {users.map((user) => (
-                    <option key={user.id} value={user.id}>
-                      {user.nama}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
               <div className="grid gap-10 mb-6 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 font-semibold ">Nama Produk</label>

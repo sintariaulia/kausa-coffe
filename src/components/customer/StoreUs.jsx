@@ -21,7 +21,7 @@ const StoreUs = () => {
             <div className='flex justify-center py-6'>
                 <div className="mapouter ">
                     <div class="gmap_canvas  ">
-                        <iframe style={{ width: "75rem", height: "520px" }} id="gmap_canvas" src="https://maps.google.com/maps?q=kausa padang&t=&z=14&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        <iframe title="Peta Lokasi Kausa" style={{ width: "75rem", height: "520px" }} id="gmap_canvas" src="https://maps.google.com/maps?q=kausa padang&t=&z=14&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                     </div>
                 </div>
             </div>

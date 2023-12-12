@@ -18,6 +18,7 @@ const ListProdukAdmin = () => {
             try {
                 const response = await axios.get('http://localhost:3001/produk');
                 const listProduks = response.data?.datas;
+                console.log(response.data?.datas)
                 listProduks.sort((a, b) => b.id - a.id);    // Sort New Produk
                 setProduks(listProduks);
             } catch (error) {

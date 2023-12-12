@@ -3,10 +3,10 @@ import PaymentBanner from '../../assets/bannerpay.png'
 import LogoBCA from '../../assets/logobca.jpeg'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 const UploadPayment = () => {
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     const { id } = useParams();
     const navigate = useNavigate();
     const [totalHarga, setTotalHarga] = useState("");

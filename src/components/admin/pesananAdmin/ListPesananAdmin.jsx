@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
+import { FaPlus, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import { formatDate } from '../../../util/Helper'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
@@ -109,6 +109,9 @@ const ListPesananAdmin = () => {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-3">
+                                        ID Pesanan
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
                                         User ID
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -139,8 +142,9 @@ const ListPesananAdmin = () => {
                                     return (
                                         <tr key={pesanan.id} className="bg-white border-b text-base text-center">
                                             <td scope="row" className="px-6 py-4 ">
-                                                {index + 1}
+                                                {pesanan.id}
                                             </td>
+                                            <td className="px-6 py-4">{pesanan.id}</td>
                                             <td className="px-6 py-4">{pesanan.user_id}</td>
                                             <td className="px-6 py-4">{pesanan.produk_id}</td>
                                             {/* <td className="px-6 py-4">{pesanan.quantity}</td>

@@ -16,18 +16,24 @@ const DetailProdukAdmin = () => {
     const handleBack = () => {
         navigate('/admin/produks');
     };
-    // Fetch API
+
+    // Fetch API Produk By Id
     useEffect(() => {
         const fetchProdukById = async () => {
             try {
                 const response = await axios.get(`http://localhost:3001/produk/${id}`);
                 const produkData = response.data?.datas;
-                setKategori(produkData.kategori_id);
-                setNamaProduk(produkData.nama_produk);
-                setDeskripsi(produkData.deskripsi);
-                setHarga(produkData.harga);
-                setGambar(produkData.gambar);
-                console.log(response.data);
+
+                if (produkData) {
+                    setKategori(produkData.kategori_id);
+                    setNamaProduk(produkData.nama_produk);
+                    setDeskripsi(produkData.deskripsi);
+                    setHarga(produkData.harga);
+                    setGambar(produkData.gambar);
+                    console.log(produkData);
+                } else {
+                    console.log("Data produk tidak ditemukan");
+                }
             } catch (error) {
                 console.log(error);
             }
@@ -35,6 +41,7 @@ const DetailProdukAdmin = () => {
 
         fetchProdukById();
     }, [id]);
+
 
     return (
         <div className="bg-neutral-200 h-screen w-screen overflow-hidden flex flex-row">
