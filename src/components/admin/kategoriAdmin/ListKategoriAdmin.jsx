@@ -76,7 +76,7 @@ const ListKategoriAdmin = () => {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            };
+            }
 
             const editKategori = {
                 nama_kategori: editCategory,
@@ -106,7 +106,6 @@ const ListKategoriAdmin = () => {
 
     // Function to Delete 
     const deleteKategoris = async (id) => {
-        console.log(id);
         try {
             const config = {
                 method: "delete",
@@ -203,7 +202,7 @@ const ListKategoriAdmin = () => {
                             {showForm && (
                                 <div className="fixed inset-0 text-[#675e51] flex p-20 justify-center bg-black bg-opacity-50">
                                     <div className="container mx-auto max-w-xl py-5">
-                                        <div className="card bg-[#edeae4] rounded-2xl shadow mb-6">
+                                        <div className="card bg-[#f8f6f4] rounded-2xl shadow mb-6">
                                             <div className="card-body">
                                                 <button onClick={() => setShowForm(false)} className='flex justify-end -mt-4'>
                                                     <span className='text-4xl'> <CiCircleRemove /> </span>
@@ -220,7 +219,7 @@ const ListKategoriAdmin = () => {
                                                             <input type="text" id="nama_kategori" name='nama_kategori'
                                                                 value={editCategoryId ? editCategory : newCategory}
                                                                 onChange={(e) => editCategoryId ? setEditCategory(e.target.value) : setNewCategory(e.target.value)}
-                                                                className="form-input w-full bg-[#edeae4] my-1" />
+                                                                className="form-input w-full bg-[#f8f6f4] my-1" />
                                                         </div>
 
                                                     </div>

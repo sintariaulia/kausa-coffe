@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PaymentBanner from '../../assets/bannerpay.png'
 import LogoBCA from '../../assets/logobca.jpeg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const UploadPayment = () => {
+    const token = localStorage.getItem("token");
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [totalHarga, setTotalHarga] = useState("");
+
+    // Fetch API Pesanan By Id
+    useEffect(() => {
+        const fetchPesananById = async () => {
+            try {
+                const response = await axios.get(`http://localhost:3001/pesanan/${id}`);
+                const pesananData = response.data?.datas;
+                setTotalHarga(pesananData.total_harga);
+                console.log(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchPesananById();
+    }, [id]);
+
     return (
         <div className="bg-[#fafafa] pt-11 h-[930px] pb-3 flex flex-col justify-start">
             <img src={PaymentBanner} alt="produkorder" className='mx-auto pt-20 w-[25%]' />
@@ -25,7 +47,7 @@ const UploadPayment = () => {
                         <div className="mt-10">
                             <div className="flex justify-between mt-7 text-lg text-[#54514d] font-semibold">
                                 <div>Total Pembayaran</div>
-                                <h3 >Rp. 200.000</h3>
+                                <h3 className='text-xl' >Rp. {totalHarga}</h3>
                             </div>
                             <div className="w-full my-3 border border-[#54514d]"></div>
                         </div>

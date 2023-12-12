@@ -89,7 +89,7 @@ const ListUserAdmin = () => {
 
     // Function Delete User
     const deleteUser = async (id) => {
-        console.log(id);
+        // console.log(id);
         try {
             const config = {
                 method: "delete",
@@ -111,9 +111,9 @@ const ListUserAdmin = () => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     await axios.request(config);
-                    // Jika Anda ingin melakukan sesuatu setelah kategori dihapus, lakukan di sini
                     Swal.fire("Deleted!", "The user has been deleted.", "success");
                     window.location.reload();
+                    // navigate(`/admin/users`);
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                     Swal.fire("Cancelled", "Your user data is safe :)", "error");
                 }
@@ -193,13 +193,13 @@ const ListUserAdmin = () => {
                                         {showForm && (
                                             <div className="fixed inset-0 text-[#675e51] flex items-center justify-center bg-black bg-opacity-50">
                                                 <div className="container mx-auto max-w-2xl py-5">
-                                                    <div className="card bg-[#f1efeb] rounded-2xl shadow mb-6">
+                                                    <div className="card bg-[#f8f6f4] rounded-2xl shadow mb-6">
                                                         <div className="card-body">
                                                             <button onClick={() => setShowForm(false)} className='flex justify-end text-4xl -mt-4'>
                                                                 <CiCircleRemove />
                                                             </button>
                                                             <h2 className="font-bold text-2xl text-center -mt-7 mb-4">
-                                                                Edit Profile
+                                                                Form Edit Data
                                                             </h2>
                                                             <form onSubmit={handleFormEdit} className='px-10'>
                                                                 <div className="mb-5">
@@ -212,7 +212,7 @@ const ListUserAdmin = () => {
                                                                             name='nama'
                                                                             value={editedUserName}
                                                                             onChange={(e) => setEditedUserName(e.target.value)}
-                                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                                            className="form-input bg-[#f8f6f4] w-full my-1" />
                                                                     </div>
                                                                 </div>
                                                                 <div className="mb-7">
@@ -225,7 +225,7 @@ const ListUserAdmin = () => {
                                                                             name='no_hp'
                                                                             value={editedUserNoHp}
                                                                             onChange={(e) => setEditedUserNoHp(e.target.value)}
-                                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                                            className="form-input bg-[#f8f6f4] w-full my-1" />
                                                                     </div>
                                                                 </div>
                                                                 <div className='flex justify-end pb-3'>

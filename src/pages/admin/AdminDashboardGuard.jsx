@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AdminDashboardGuard = ({ children }) => {
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.auth);
-
+  const authState = useSelector((state) => state.auth);
+  const token = localStorage.getItem("token");
   useEffect(() => {
     // Cek peran dan arahkan pengguna ke dashboard yang sesuai
-    if (!user || user.role !== 'admin') {
-      navigate('/signin?message=Unauthorized');
+    try {
+      if (!token) {
+        throw new Error("Token not found");
+      }
+
+      if (!authState || !authState.user || !authState.user.role || authState.user.role !== "admin") {
+        throw new Error("Unauthorized");
+      }
+    } catch (error) {
+      // Tambahkan penanganan ketika token tidak ditemukan atau pengguna tidak diotorisasi
+      if (error.message === "Token not found") {
+        console.log("Token Not Found")
+      } else {
+        navigate("/signin?message=Unauthorized");
+      }
     }
-  }, [navigate, user]);
+  }, [navigate, authState, token]);
 
   return <>{children}</>;
+
 };
+
 
 export default AdminDashboardGuard;

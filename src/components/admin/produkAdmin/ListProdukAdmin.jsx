@@ -17,7 +17,6 @@ const ListProdukAdmin = () => {
         const fetchProduks = async () => {
             try {
                 const response = await axios.get('http://localhost:3001/produk');
-                console.log('response', response.data);
                 const listProduks = response.data?.datas;
                 listProduks.sort((a, b) => b.id - a.id);    // Sort New Produk
                 setProduks(listProduks);
@@ -30,7 +29,6 @@ const ListProdukAdmin = () => {
 
     // Fetch API Delete & Function Delete
     const deleteProduks = async (id) => {
-        console.log(id);
         try {
             const getToken = localStorage.getItem("token");
             const config = {
@@ -107,9 +105,6 @@ const ListProdukAdmin = () => {
                                                 No
                                             </th>
                                             <th scope="col" className="px-6 py-3">
-                                                Kode Produk
-                                            </th>
-                                            <th scope="col" className="px-6 py-3">
                                                 Nama Produk
                                             </th>
                                             <th scope="col" className="px-6 py-3">
@@ -130,7 +125,6 @@ const ListProdukAdmin = () => {
                                                     <td scope="row" className="px-6 py-4 ">
                                                         {index + 1}
                                                     </td>
-                                                    <td className="px-6 py-4">{produk.kode_produk}</td>
                                                     <td className="px-6 py-4">{produk.nama_produk}</td>
                                                     <td className="px-6 py-4">{produk.kategori_id}</td>
                                                     <td className="px-6 py-4">{produk.harga}</td>

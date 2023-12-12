@@ -97,9 +97,6 @@ const ListProdukKasir = () => {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        Kode Produk
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
                                         Nama Produk
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -120,7 +117,6 @@ const ListProdukKasir = () => {
                                             <td scope="row" className="px-6 py-4 ">
                                                 {index + 1}
                                             </td>
-                                            <td className="px-6 py-4">{produk.kode_produk}</td>
                                             <td className="px-6 py-4">{produk.nama_produk}</td>
                                             <td className="px-6 py-4">{produk.kategori_id}</td>
                                             <td className="px-6 py-4">{produk.harga}</td>

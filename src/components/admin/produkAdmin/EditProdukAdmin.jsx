@@ -90,22 +90,26 @@ const EditProdukAdmin = () => {
                             <div className="grid gap-10 mb-6 md:grid-cols-2">
                                 <div className="mb-6">
                                     <label htmlFor="nama_produk" className="block mb-2 font-semibold">Nama Produk</label>
-                                    <input
-                                        type='text'
-                                        id='nama_produk'
-                                        value={namaProduk}
-                                        onChange={(e) => setNamaProduk(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    <div className='border border-gray-300 rounded-lg'>
+                                        <input
+                                            type='text'
+                                            id='nama_produk'
+                                            value={namaProduk}
+                                            onChange={(e) => setNamaProduk(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="harga" className="block mb-2 font-semibold ">Harga</label>
-                                    <input
-                                        type="number"
-                                        id="harga"
-                                        name='harga'
-                                        value={harga}
-                                        onChange={(e) => setHarga(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    <div className='border border-gray-300 rounded-lg'>
+                                        <input
+                                            type="number"
+                                            id="harga"
+                                            name='harga'
+                                            value={harga}
+                                            onChange={(e) => setHarga(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    </div>
                                 </div>
                             </div>
 
@@ -120,16 +124,18 @@ const EditProdukAdmin = () => {
                             </div>
                             <div className="mb-6">
                                 <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
-                                <input
-                                    type='text'
-                                    id='gambar'
-                                    value={gambar}
-                                    onChange={(e) => setGambar(e.target.value)}
-                                    className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                <div className='border border-gray-300 rounded-lg'>
+                                    <input
+                                        type='text'
+                                        id='gambar'
+                                        value={gambar}
+                                        onChange={(e) => setGambar(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                </div>
                             </div>
-                            <div className='flex justify-end gap-5 pt-5'>
-                                <button type="button" className="btn-error inline-flex items-center text-white font-semibold py-2 px-3 rounded-md"
-                                    onClick={handleGoBack}>
+                            <div className='flex justify-between gap-5 pt-5'>
+                                <button onClick={handleGoBack} type="button"
+                                    className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                                     Kembali
                                 </button>
                                 <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">

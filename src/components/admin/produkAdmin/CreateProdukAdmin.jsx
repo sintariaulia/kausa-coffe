@@ -6,7 +6,6 @@ import { CiSaveDown2 } from 'react-icons/ci'
 
 const CreateProdukAdmin = () => {
     const navigate = useNavigate();
-    const [kodeProduk, setKodeProduk] = useState("");
     const [namaProduk, setNamaProduk] = useState("");
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState("");
@@ -44,7 +43,6 @@ const CreateProdukAdmin = () => {
             };
 
             const dataProduk = {
-                kode_produk: kodeProduk,
                 kategori_id: kategori,
                 nama_produk: namaProduk,
                 deskripsi: deskripsi,
@@ -72,29 +70,19 @@ const CreateProdukAdmin = () => {
 
     return (
         <div className="flex-1 p-3 min-h-0 overflow-auto">
-            <div className=" mt-5 justify-center">
+            <div className="mt-7 justify-center">
                 {/* judul */}
                 <div className='w-[1000px] mx-32 '>
-                    <h1 className="text-4xl text-[#675e51] font-bold">Tambah Data Produk</h1>
+                    <h1 className="text-[42px] text-[#675e51] font-bold">Tambah Data Produk</h1>
                     <p className="my-3 text-[#675e51]">Dashboard / Produk / Create</p>
                 </div>
                 {/* content */}
                 <div className=" bg-white mx-20 mt-8 justify-center text-[#675e51] rounded-2xl shadow-sm">
                     <div className="relative overflow-x-auto px-20 py-14">
                         <form onSubmit={handleFormSubmit}>
-                            <div className="grid gap-10 mb-6 md:grid-cols-2">
-                                <div>
-                                    <label htmlFor='kode_produk' className="block mb-2 font-semibold">Kode Produk</label>
-                                    <input
-                                        type="text"
-                                        id="kode_produk"
-                                        name='kode_produk'
-                                        value={kodeProduk}
-                                        onChange={(e) => setKodeProduk(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
-                                </div>
-                                <div>
-                                    <label htmlFor='nama_produk' className="block mb-2 font-semibold">Nama Produk</label>
+                            <div className='mb-7'>
+                                <label htmlFor='nama_produk' className="block mb-2 font-semibold">Nama Produk</label>
+                                <div className='border border-gray-300 rounded-lg '>
                                     <input
                                         type="text"
                                         id="nama_produk"
@@ -103,6 +91,8 @@ const CreateProdukAdmin = () => {
                                         onChange={(e) => setNamaProduk(e.target.value)}
                                         className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                                 </div>
+                            </div>
+                            <div className="grid gap-10 mb-6 md:grid-cols-2">
                                 <div>
                                     <label htmlFor="kategori_id" className="block mb-2 font-semibold ">Kategori</label>
                                     <select
@@ -120,13 +110,15 @@ const CreateProdukAdmin = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="harga" className="block mb-2 font-semibold ">Harga</label>
-                                    <input
-                                        type="text"
-                                        id="harga"
-                                        name='harga'
-                                        value={harga}
-                                        onChange={(e) => setHarga(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    <div className='border border-gray-300 rounded-lg '>
+                                        <input
+                                            type="text"
+                                            id="harga"
+                                            name='harga'
+                                            value={harga}
+                                            onChange={(e) => setHarga(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    </div>
                                 </div>
                             </div>
                             <div className="mb-6">
@@ -141,12 +133,14 @@ const CreateProdukAdmin = () => {
 
                             <div className="mb-6">
                                 <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
-                                <input
-                                    type='text'
-                                    id='gambar'
-                                    value={gambar}
-                                    onChange={(e) => setGambar(e.target.value)}
-                                    className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                <div className='border border-gray-300 rounded-lg '>
+                                    <input
+                                        type='text'
+                                        id='gambar'
+                                        value={gambar}
+                                        onChange={(e) => setGambar(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                </div>
                             </div>
 
                             {/* Upload file gambar */}
@@ -160,7 +154,7 @@ const CreateProdukAdmin = () => {
                                     type="file" />
                             </div> */}
 
-                            <div className='flex justify-between'>
+                            <div className='flex justify-between pt-6'>
                                 <button onClick={handleBack} type="button"
                                     className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                                     Kembali

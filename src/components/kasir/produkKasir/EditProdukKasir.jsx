@@ -121,13 +121,11 @@ const EditProdukKasir = () => {
                                     className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                             </div>
 
-                            <div className='flex justify-end gap-5 pt-5'>
-                                <button type="button" className="btn-error inline-flex items-center text-white font-semibold py-2 px-3 rounded-md"
-                                    onClick={handleGoBack}
-                                >
+                            <div className='flex justify-between gap-5 pt-5'>
+                                <button onClick={handleGoBack} type="button"
+                                    className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                                     Kembali
                                 </button>
-
                                 <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
                                     <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
                                     Simpan

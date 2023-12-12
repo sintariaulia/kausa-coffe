@@ -59,7 +59,7 @@ const AdminSidebar = () => {
         {
             key: 'pembayaran',
             label: 'Pembayaran',
-            path: '/admin/pembayaran',
+            path: '/admin/payment',
             icon: <HiCurrencyDollar />
         },
     ]

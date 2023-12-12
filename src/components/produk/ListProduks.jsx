@@ -21,11 +21,6 @@ const ListProduks = () => {
                 }
                 const responseProduk = await axios.get(url);
                 const listProduks = responseProduk.data.datas;
-                listProduks.sort((a, b) => {
-                    const kodeA = parseInt(a.kode_produk.slice(1));
-                    const kodeB = parseInt(b.kode_produk.slice(1));
-                    return kodeA - kodeB;
-                });
                 setProduks(listProduks);
             } catch (error) {
                 console.log(error);
@@ -40,7 +35,7 @@ const ListProduks = () => {
     const handleOrderProduk = async (selectedProduk) => {
         if (authState.isLogin === false) {
             try {
-                // Tampilkan pesan kesalahan menggunakan SweetAlert atau cara lain sesuai preferensi Anda
+                // Tampilkan pesan kesalahan SweetAlert
                 const result = await Swal.fire({
                     icon: "error",
                     title: "Oops...",
@@ -51,7 +46,7 @@ const ListProduks = () => {
                 });
 
                 if (result.isConfirmed) {
-                    navigate("/signin"); // Navigasi ke halaman login jika pengguna memilih "Go to login"
+                    navigate("/signin");
                 }
             } catch (error) {
                 console.error(error);
@@ -62,7 +57,7 @@ const ListProduks = () => {
     };
 
     return (
-        <div className="bg-[#fafafa] pt-12 h-[120%] flex flex-col justify-start">
+        <div className="bg-[#fafafa] pt-12 flex flex-col justify-start">
             <img src={BannerProduk} alt="BannerProduk" className='mx-auto pt-16 pb-5 w-[50%]' />
             <div className='flex gap-28 bg-[#6c6966] mx-24 rounded-full text-[#eeeae6] text-base md:text-xl font-bold py-2 my-6 justify-center uppercase'>
                 <h3 className={selectedCategory === '' ? 'active-menu2 cursor-pointer' : 'hover:text-[#9e978c] cursor-pointer'} onClick={() => setSelectedCategory('')}>All</h3>

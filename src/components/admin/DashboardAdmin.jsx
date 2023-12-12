@@ -35,11 +35,15 @@ const DashboardAdmin = () => {
             <AdminSidebar />
             <div className="flex flex-col flex-1">
                 <NavbarAdmin />
-                <div className="flex-1 p-4 min-h-0 overflow-auto">
-                    <DashboardStatGrid totalProducts={totalProducts} totalPesanans={totalPesanans} totalRevenue={totalRevenue} />
-                    <div className='pt-10 px-10'>
-                        <TransactionChart />
+                <div className="flex-1 p-4 mt-10 min-h-0 overflow-auto">
+                    <div className='pb-10 px-10'>
+                        <div className="flex justify-center gap-2 text-xl text-[#675e51] font-medium w-full p-5 bg-[#fafafa] rounded-md shadow-sm shadow-white">
+                            Welcome Admin Kausa
+                        </div>
+                        {/* <TransactionChart /> */}
                     </div>
+                    <DashboardStatGrid totalProducts={totalProducts} totalPesanans={totalPesanans} totalRevenue={totalRevenue} />
+
                 </div>
             </div>
         </div>

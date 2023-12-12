@@ -9,48 +9,39 @@ import { logout } from '../../services/authSlice';
 import { RiLogoutBoxLine, RiProfileLine, RiMapPinLine } from "react-icons/ri";
 
 const Navbar = () => {
-    const [open, setOpen] = useState(false);    // Untuk Navbar Mobile
     const location = useLocation(); // Untuk Active Menu
-    const [modal, setModal] = useState(false);  // Untuk Modal Logout
     const { user, isLogin } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
 
-    // useEffect(() => {
-    //     const token = localStorage.getItem('token');
-    //     if (token) {
-    //         setIsLogin(true);
-    //     }
-    // }, []);
-
-    // const handleLogout = () => {
-    //     localStorage.clear();
-    //     setIsLogin(false);
-    //     window.location.href = "/"
-    // }
     const handleLogout = () => {
         dispatch(logout());
         setDropdownOpen(false);
         navigate("/signin");
     };
+
+    const [modal, setModal] = useState(false);  // Untuk Modal Logout
     const handleModal = () => {
         setModal(true);
     }
+
     // Untuk Menu tampilan Mobile
+    const [open, setOpen] = useState(false);
     const toggleMenu = () => {
         setOpen(!open);
     }
+
     // Untuk Active Menu
     useEffect(() => {
         setOpen(false);
     }, [location.pathname]);
 
+    // Dropdown User
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -75,7 +66,6 @@ const Navbar = () => {
         // Jika role tidak sesuai, Anda bisa mengatur linkTo ke halaman lain yang sesuai.
         linkTo = "/kasir/dashboard";
     }
-    console.log(user?.role);
 
     return (
         <nav className='fixed w-full z-10 bg-[#edeae4] shadow-xl'>
@@ -150,7 +140,7 @@ const Navbar = () => {
                                             </Link>
                                             {modal && (
                                                 <div className="fixed inset-0 bg-black bg-opacity-30 z-50 flex items-center justify-center">
-                                                    <input type="checkbox" id="my-modal" className="modal-toggle" checked={modal} />
+                                                    <input type="checkbox" id="my-modal" className="modal-toggle" defaultChecked={modal} />
                                                     <div className="modal modal-bottom sm:modal-middle">
                                                         <div className="modal-box text-left bg-[#edeae4]">
                                                             <p className="text-sm text-red-500 pt-2">Logout Confirmation</p>

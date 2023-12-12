@@ -6,13 +6,12 @@ import { useSelector } from "react-redux";
 import { CiSaveDown2, CiCircleRemove } from 'react-icons/ci'
 
 const Profile = () => {
-    const authState = useSelector((state) => state.auth);
     // Cek apakah authState atau authState.user ada sebelum mengakses propertinya
+    const authState = useSelector((state) => state.auth);
     const userName = authState?.user?.nama || "Guest";
     const noHandphone = authState?.user?.no_hp || "N/A";
     const email = authState?.user?.email || "N/A";
     const role = authState?.user?.role || "N/A";
-
     const token = localStorage.getItem("token");
     const [showForm, setShowForm] = useState(false);
     const [editedUserName, setEditedUserName] = useState('');
@@ -81,7 +80,7 @@ const Profile = () => {
                         {showForm && (
                             <div className="fixed inset-0 text-gray-700 flex items-center justify-center bg-black bg-opacity-50">
                                 <div className="container mx-auto max-w-2xl py-5">
-                                    <div className="card bg-[#f1efeb] rounded-2xl shadow mb-6">
+                                    <div className="card bg-[#f8f6f4] rounded-2xl shadow mb-6">
                                         <div className="card-body">
                                             <button onClick={() => setShowForm(false)} className='flex justify-end -mt-4'>
                                                 <span className='text-4xl cursor-pointer'> <CiCircleRemove /> </span>
@@ -100,7 +99,7 @@ const Profile = () => {
                                                             name='nama'
                                                             value={editedUserName}
                                                             onChange={(e) => setEditedUserName(e.target.value)}
-                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                            className="form-input bg-[#f8f6f4] w-full my-1" />
                                                     </div>
                                                 </div>
                                                 <div className="mb-7">
@@ -113,7 +112,7 @@ const Profile = () => {
                                                             name='no_hp'
                                                             value={editedUserNoHp}
                                                             onChange={(e) => setEditedUserNoHp(e.target.value)}
-                                                            className="form-input bg-[#edeae4] w-full my-1" />
+                                                            className="form-input bg-[#f8f6f4] w-full my-1" />
                                                     </div>
                                                 </div>
                                                 <div className='flex justify-end pb-3'>

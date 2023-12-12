@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import HomePage from '../pages/homepages';
 import SignIns from '../pages/signinpages';
 import SignUps from '../pages/signuppages';
-import LoginGuard from '../components/SignInGuard';
 // ! USER
 import AboutUsPage from '../pages/customers/aboutuspages';
 import StorePageUs from '../pages/customers/storeuspages';
@@ -14,7 +13,7 @@ import ListProdukPages from '../pages/produks/ListProdukPages';
 import DetailProdukPages from '../pages/produks/DetailProdukPages';
 // Pesanan
 import OrderProdukPages from '../pages/produks/OrderProdukPages';
-import FormPesananPage from '../pages/pemesanans/FormPesananPage';
+import DetailPesananPage from '../pages/pemesanans/DetailPesananPage';
 import UploadPaymentPage from '../pages/pemesanans/UploadPaymentPage';
 import PaymentSuccess from '../components/pemesanan/PaymentSuccess';
 // ! ADMIN
@@ -33,8 +32,11 @@ import CreateProdukAdminPage from '../pages/admin/produkAdminPage/CreateProdukAd
 import EditProdukAdminPage from '../pages/admin/produkAdminPage/EditProdukAdminPage';
 // Data Pesanan
 import ListPesananAdminPage from '../pages/admin/pesananAdminPage/ListPesananAdminPage';
+import DetailPesananAdminPage from '../pages/admin/pesananAdminPage/DetailPesananAdminPage';
+import CreatePesananAdminPage from '../pages/admin/pesananAdminPage/CreatePesananAdminPage';
 // Data Pembayaran
 import ListPaymentAdminPage from '../pages/admin/paymentAdminPage/ListPaymentAdminPage';
+import DetailPaymentAdminPage from '../pages/admin/paymentAdminPage/DetailPaymentAdminPage';
 
 // ! KASIR
 import DashboardKasirPage from '../pages/kasir/DashboardKasirPage';
@@ -45,6 +47,7 @@ import DetailProdukKasirPage from '../pages/kasir/produkKasirPage/DetailProdukKa
 import EditProdukKasirPage from '../pages/kasir/produkKasirPage/EditProdukKasirPage';
 // Data Pesanan
 import ListPesananKasirPage from '../pages/kasir/pesananKasirPage/ListPesananKasirPage';
+import DetailPesananKasirPage from '../pages/kasir/pesananKasirPage/DetailPesananKasirPage';
 // Data Pembayaran
 import ListPembayaranKasirPage from '../pages/kasir/pembayaranKasirPage/ListPembayaranKasirPage';
 
@@ -70,10 +73,10 @@ function IndexRouter() {
           <Route path='/' element={<HomePage />} />
           <Route path='/signin' element={<SignIns />} />
           <Route path='/signup' element={<SignUps />} />
-
-          {/* User */}
           <Route path='/aboutus' element={<AboutUsPage />} />
           <Route path='/store' element={<StorePageUs />} />
+
+          {/* User */}
           <Route path='/profile' element={<ProfilePages />} />
           <Route path='/riwayatpesanan' element={<RiwayatPesananPages />} />
 
@@ -81,17 +84,15 @@ function IndexRouter() {
           <Route path='/produks/:id' element={<DetailProdukPages />} />
 
           <Route path='/order/:id' element={<OrderProdukPages />} />
-          <Route path='/pesanan/form-pesanan' element={<FormPesananPage />} />
-          <Route path='/pesanan/upload-payment' element={<UploadPaymentPage />} />
+          <Route path='/pesanan/:id/detail' element={<DetailPesananPage />} />
+          <Route path='/pesanan/:id/upload-payment' element={<UploadPaymentPage />} />
           <Route path='/pesanan/success' element={<PaymentSuccess />} />
 
           {/* Admin */}
           <Route
             path='/admin/dashboard'
             element={
-              <AdminDashboardGuard>
-                <DashboardAdminPage />
-              </AdminDashboardGuard>
+              <DashboardAdminPage />
             }
           />
           <Route path='/admin/users' element={<ListUserAdminPage />} />
@@ -100,19 +101,11 @@ function IndexRouter() {
           <Route
             path='/admin/kategori'
             element={
-              <AdminDashboardGuard>
-                <ListKategoriAdminPage />
-              </AdminDashboardGuard>
+              <ListKategoriAdminPage />
             }
           />
-          <Route
-            path='/admin/produks'
-            element={
-              <AdminDashboardGuard>
-                <ListProdukAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
+
+          <Route path='/admin/produks' element={<ListProdukAdminPage />} />
           <Route
             path='/admin/produks/create-produk'
             element={
@@ -130,22 +123,19 @@ function IndexRouter() {
               </AdminDashboardGuard>
             }
           />
+
+          <Route path='/admin/pesanan' element={<ListPesananAdminPage />} />
+          <Route path='/admin/pesanan/:id/detail' element={<DetailPesananAdminPage />} />
           <Route
-            path='/admin/pesanan'
+            path='/admin/pesanan/create-pesanan'
             element={
               <AdminDashboardGuard>
-                <ListPesananAdminPage />
+                <CreatePesananAdminPage />
               </AdminDashboardGuard>
-            }
-          />
-          <Route
-            path='/admin/pembayaran'
-            element={
-              <AdminDashboardGuard>
-                <ListPaymentAdminPage />
-              </AdminDashboardGuard>
-            }
-          />
+            } />
+
+          <Route path='/admin/payment' element={<ListPaymentAdminPage />} />
+          <Route path='/admin/payment/:id/detail' element={<DetailPaymentAdminPage />} />
           {/* End Admin Route */}
 
           {/* Kasir */}
@@ -155,6 +145,7 @@ function IndexRouter() {
           <Route path='/kasir/produks/:id/detail' element={<DetailProdukKasirPage />} />
           <Route path='/kasir/produks/:id/edit' element={<EditProdukKasirPage />} />
           <Route path='/kasir/pesanan' element={<ListPesananKasirPage />} />
+          <Route path='/kasir/pesanan/:id/detail' element={<DetailPesananKasirPage />} />
           <Route path='/kasir/pembayaran' element={<ListPembayaranKasirPage />} />
           {/* End Kasir Route */}
 

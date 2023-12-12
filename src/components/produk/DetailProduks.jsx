@@ -31,7 +31,7 @@ const DetailProduks = () => {
         const result = await Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "You need to login first!",
+          text: "You need login to order produk!",
           showCancelButton: true,
           cancelButtonText: "Cancel",
           confirmButtonText: "Go to login",

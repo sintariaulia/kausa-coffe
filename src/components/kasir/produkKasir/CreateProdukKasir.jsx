@@ -6,12 +6,15 @@ import { CiSaveDown2 } from 'react-icons/ci'
 
 const CreateProdukKasir = () => {
     const navigate = useNavigate();
-    const [kodeProduk, setKodeProduk] = useState("");
     const [namaProduk, setNamaProduk] = useState("");
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
     const [gambar, setGambar] = useState("");
+
+    const handleGoBack = () => {
+        navigate(-1)
+    }
 
     // Select Data Kategori
     const [kategoris, setKategoris] = useState([]);
@@ -33,7 +36,6 @@ const CreateProdukKasir = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:3001/produk', {
-                kode_produk: kodeProduk,
                 kategori_id: kategori,
                 nama_produk: namaProduk,
                 deskripsi: deskripsi,
@@ -70,16 +72,7 @@ const CreateProdukKasir = () => {
                     <div className="relative overflow-x-auto px-20 py-14">
                         <form onSubmit={handleFormSubmit}>
                             <div className="grid gap-10 mb-6 md:grid-cols-2">
-                                <div>
-                                    <label htmlFor='kode_produk' className="block mb-2 font-semibold">Kode Produk</label>
-                                    <input
-                                        type="text"
-                                        id="kode_produk"
-                                        name='kode_produk'
-                                        value={kodeProduk}
-                                        onChange={(e) => setKodeProduk(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
-                                </div>
+                                
                                 <div>
                                     <label htmlFor='nama_produk' className="block mb-2 font-semibold">Nama Produk</label>
                                     <input
@@ -137,7 +130,11 @@ const CreateProdukKasir = () => {
                                     onChange={(e) => setGambar(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                             </div>
-                            <div className='flex justify-end'>
+                            <div className='flex justify-between pt-6'>
+                                <button onClick={handleGoBack} type="button"
+                                    className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
+                                    Kembali
+                                </button>
                                 <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
                                     <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
                                     Simpan

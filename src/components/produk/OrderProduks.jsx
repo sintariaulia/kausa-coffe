@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import FormBanner from '../../assets/bannerform.png';
 import { TimePicker } from 'react-ios-time-picker';
+import Swal from 'sweetalert2';
 
 const OrderProduks = () => {
+  const token = localStorage.getItem("token");
   const params = useParams();
   const navigate = useNavigate();
+  const authState = useSelector((state) => state.auth); // Get user information from Redux store
+  const userId = authState.user.id; // Assuming you have a user object in your Redux state
   const [orderProduk, setOrderProduk] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const [subtotal, setSubtotal] = useState(0);
@@ -27,19 +32,79 @@ const OrderProduks = () => {
         const response = await axios.get(`http://localhost:3001/produk/${params.id}`);
         const produkOrder = response.data.datas;
         setOrderProduk(produkOrder);
-        setSubtotal(produkOrder?.harga * quantity);
       } catch (error) {
         console.log(error);
       }
     }
 
     getOrderProdukId();
-  }, [params.id, quantity]);
+  }, [params.id]);
+
+  // Effect to calculate subtotal when quantity changes
+  useEffect(() => {
+    if (orderProduk) {
+      setSubtotal(orderProduk.harga * quantity);
+    }
+  }, [quantity, orderProduk]);
 
   // Function to handle quantity change
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
-    setSubtotal(orderProduk?.harga * newQuantity); // Recalculate subtotal when quantity changes
+    setSubtotal(orderProduk?.harga * newQuantity);
+  };
+
+  // POST Pesanan
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      const orderData = {
+        user_id: userId,
+        produk_id: params.id,
+        quantity: quantity,
+        waktu_pickup: time,
+        total_harga: subtotal,
+        status_pesanan: "Di Proses",
+      };
+
+      // Menampilkan SweetAlert Confirm Pesanan
+      const confirmationResult = await Swal.fire({
+        title: "Pastikan Data Pesanan Sudah Benar",
+        text: "Apakah Anda yakin data sudah benar?",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Cek Data Pesanan ?",
+        confirmButtonText: "Sudah Benar",
+        reverseButtons: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+      });
+
+      if (confirmationResult.isConfirmed) {
+        const response = await axios.post('http://localhost:3001/pesanan', orderData, config);
+        console.log(response.data);
+        Swal.fire({
+          title: "Berhasil!",
+          text: "Data berhasil ditambahkan.",
+          icon: "success",
+          confirmButtonText: "OK",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const orderId = response.data?.datas?.id;
+            navigate(`/pesanan/${orderId}/detail`);
+          } else {
+            // memilih untuk tidak melanjutkan
+          }
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -75,19 +140,19 @@ const OrderProduks = () => {
               </div>
             </div>
           </div>
-          <div className="cart-summary mt-5">
-            <div className="cart-checkout">
-              <div className="subtotal">
-                <span className='text-[#675e51]'>Subtotal</span>
-                <span className="amount text-[#675e51]">RP. {subtotal}</span>
+          <form onSubmit={handleOrderSubmit}>
+            <div className="cart-summary mt-5">
+              <div className="cart-checkout">
+                <div className="subtotal">
+                  <span className='text-[#675e51]'>Subtotal</span>
+                  <span className="amount text-[#675e51]">RP. {subtotal}</span>
+                </div>
+                <p>Taxes and shipping calculated at continue</p>
+                <button type='submit' className='next-btn'>Simpan Pesanan</button>
+                <button className='back-btn my-3' onClick={handleBack}>Kembali</button>
               </div>
-              <p>Taxes and shipping calculated at continue</p>
-              <Link to="/pesanan/form-pesanan">
-                <button className='next-btn'>Lanjutkan Pesanan</button>
-              </Link>
-              <button className='back-btn my-3' onClick={handleBack}>Kembali</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
