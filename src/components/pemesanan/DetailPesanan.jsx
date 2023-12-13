@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import ProdukOrder from '../../assets/orderproduk.png'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const DetailPesanan = () => {
-    const navigate = useNavigate()
     const { id } = useParams()
     const [produkNama, setProdukNama] = useState("")
     const [quantity, setQuantity] = useState("")
     const [waktuPickUp, setWaktuPickUp] = useState("")
     const [totalHarga, setTotalHarga] = useState("")
-
-    const handleBack = () => {
-        navigate(-1);
-    };
 
     // Fetch API Pesanan By Id
     useEffect(() => {
@@ -77,11 +72,11 @@ const DetailPesanan = () => {
             </div>
             {/* Button */}
             <div className='mx-32 py-5'>
-                <div className="text-center flex mt-5 w-full justify-between items-center ">
-                    <button onClick={handleBack}
+                <div className="text-center flex mt-5 w-full justify-end items-center ">
+                    {/* <button onClick={handleBack}
                         className="text-white font-semibold py-2 px-10 rounded-full bg-[#54514d] hover:bg-gray-400">
                         &laquo; Kembali Ke Produk
-                    </button>
+                    </button> */}
 
                     <Link to={`/pesanan/${id}/upload-payment`}
                         className="text-white font-semibold py-2 px-6 rounded-full bg-[#a3292f] hover:bg-[#ff3333] ">

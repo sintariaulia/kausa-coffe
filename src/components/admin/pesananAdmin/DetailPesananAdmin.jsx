@@ -236,19 +236,13 @@ const DetailPesananAdmin = () => {
                       className="px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                       Kembali
                     </button>
-                    <div className='flex justify-end gap-5'>
-                      <button
-                        type="button"
-                        className="px-4 py-2 mt-2 btn-success text-white font-semibold rounded-md hover:bg-green-300">
-                        Cek Pembayaran
-                      </button>
-                      <button
-                        onClick={handleStatusPesanan}
-                        type="button"
-                        className="px-4 py-2 mt-2 btn-warning text-white font-semibold rounded-md hover:bg-yellow-200">
-                        Ubas Status Pesanan
-                      </button>
-                    </div>
+
+                    <button
+                      onClick={handleStatusPesanan}
+                      type="button"
+                      className="px-4 py-2 mt-2 btn-warning text-white font-semibold rounded-md hover:bg-yellow-200">
+                      Ubas Status Pesanan
+                    </button>
 
                   </div>
                 </form>

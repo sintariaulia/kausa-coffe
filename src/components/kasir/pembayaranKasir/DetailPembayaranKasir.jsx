@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import { formatDate } from '../../../util/Helper'
 import BuktiBayar from '../assets/buktipembayaran.png'
 
-const DetailPaymentAdmin = () => {
+const DetailPembayaranKasir = () => {
   const navigate = useNavigate()
   const { id } = useParams()
   const [paymentId, setPaymentId] = useState("")
@@ -16,7 +16,7 @@ const DetailPaymentAdmin = () => {
   const token = localStorage.getItem("token")
 
   const handleBack = () => {
-    navigate('/admin/payment');
+    navigate('/kasir/payment');
   }
 
   // Function fetch API Get Payment By Id 
@@ -37,7 +37,7 @@ const DetailPaymentAdmin = () => {
     }
     getPaymentById();
   }, [id]);
-  
+
 
   // Function Edit Status Payment 
   const updateStatus = async (status) => {
@@ -75,11 +75,11 @@ const DetailPaymentAdmin = () => {
       if (result.isConfirmed) {
         await updateStatus("Pembayaran Sukses");
         Swal.fire("Sukses!", "", "success");
-        navigate(`/admin/payment/`);
+        navigate(`/kasir/payment/`);
       } else if (result.isDenied) {
         await updateStatus("Pembayaran Ditolak");
         Swal.fire("Tidak Diterima", "", "info");
-        navigate("/admin/payment");
+        navigate("/kasir/payment");
       }
     });
   };
@@ -97,6 +97,7 @@ const DetailPaymentAdmin = () => {
         return '';
     }
   };
+
 
   return (
     <div className="flex-1 p-4 min-h-0 overflow-auto">
@@ -230,4 +231,4 @@ const DetailPaymentAdmin = () => {
   )
 }
 
-export default DetailPaymentAdmin
+export default DetailPembayaranKasir

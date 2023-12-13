@@ -18,7 +18,7 @@ const DetailPesananKasir = () => {
     const token = localStorage.getItem("token")
 
     const handleBack = () => {
-        navigate('/admin/pesanan');
+        navigate('/kasir/pesanan');
     }
 
     // Fetch API Data Pesanan
@@ -74,7 +74,7 @@ const DetailPesananKasir = () => {
             if (result.isConfirmed) {
                 await updateStatus("Pesanan Selesai");
                 Swal.fire("Sukses!", "", "success");
-                navigate("/admin/pesanan");
+                navigate("/kasir/pesanan");
             }
         });
     };
@@ -227,7 +227,7 @@ const DetailPesananKasir = () => {
                                         </tr>
                                     </table>
 
-                                    <div className="flex flex-wrap justify-between pb-7 mx-16">
+                                    <div className="flex flex-wrap justify-between pb-7 pt-4 mx-16">
                                         <button
                                             onClick={handleBack}
                                             type="button"
@@ -235,11 +235,11 @@ const DetailPesananKasir = () => {
                                             Kembali
                                         </button>
                                         <div className='flex justify-end gap-5'>
-                                            <button
+                                            {/* <button
                                                 type="button"
                                                 className="px-4 py-2 mt-2 btn-success text-white font-semibold rounded-md hover:bg-green-300">
                                                 Cek Pembayaran
-                                            </button>
+                                            </button> */}
                                             <button
                                                 onClick={handleStatusPesanan}
                                                 type="button"

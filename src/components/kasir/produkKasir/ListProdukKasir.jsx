@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom'
-import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
+import { FaRegEye } from 'react-icons/fa'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 const ListProdukKasir = () => {
@@ -26,38 +25,38 @@ const ListProdukKasir = () => {
         fetchProduks();
     }, []);
 
-    // Fetch API Delete & Function Delete
-    const deleteProduks = async (id) => {
-        console.log(id);
-        try {
-            const config = {
-                method: "delete",
-                url: `http://localhost:3001/produk/${id}`
-            };
+    // // Fetch API Delete & Function Delete
+    // const deleteProduks = async (id) => {
+    //     console.log(id);
+    //     try {
+    //         const config = {
+    //             method: "delete",
+    //             url: `http://localhost:3001/produk/${id}`
+    //         };
 
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to delete this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-                cancelButtonText: "Cancel",
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    await axios.request(config);
-                    // Jika Anda ingin melakukan sesuatu setelah kategori dihapus, lakukan di sini
-                    Swal.fire("Deleted!", "Your products has been deleted.", "success");
-                    window.location.reload();
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    Swal.fire("Cancelled", "Your products is safe :)", "error");
-                }
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    //         Swal.fire({
+    //             title: "Are you sure?",
+    //             text: "You won't be able to delete this!",
+    //             icon: "warning",
+    //             showCancelButton: true,
+    //             confirmButtonColor: "#3085d6",
+    //             cancelButtonColor: "#d33",
+    //             confirmButtonText: "Yes, delete it!",
+    //             cancelButtonText: "Cancel",
+    //         }).then(async (result) => {
+    //             if (result.isConfirmed) {
+    //                 await axios.request(config);
+    //                 // Jika Anda ingin melakukan sesuatu setelah kategori dihapus, lakukan di sini
+    //                 Swal.fire("Deleted!", "Your products has been deleted.", "success");
+    //                 window.location.reload();
+    //             } else if (result.dismiss === Swal.DismissReason.cancel) {
+    //                 Swal.fire("Cancelled", "Your products is safe :)", "error");
+    //             }
+    //         });
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
     // Current products
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -76,7 +75,7 @@ const ListProdukKasir = () => {
                 </div>
                 <div className=" bg-white mx-20 mt-5 justify-center rounded-xl shadow-sm shadow-textFunc">
                     <div className="flex items-center justify-between px-5 pt-5">
-                        <div>
+                        {/* <div>
                             <Link
                                 className="inline-flex items-center text-gray-700 bg-[#edeae4] border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-base px-4 py-2 "
                                 type="button"
@@ -87,7 +86,7 @@ const ListProdukKasir = () => {
                                 </span>
                                 Tambah
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="relative overflow-x-auto p-5">
                         <table className="w-full text-base text-left text-gray-500 ">
@@ -121,9 +120,12 @@ const ListProdukKasir = () => {
                                             <td className="px-6 py-4">{produk.kategori_id}</td>
                                             <td className="px-6 py-4">{produk.harga}</td>
                                             <td className="px-6 py-4 flex gap-3 justify-center">
-                                                <Link to={`/kasir/produks/${produk.id}/detail`} className='text-yellow-400 text-xl'><FaRegEye /></Link>
-                                                <Link to={`/kasir/produks/${produk.id}/edit`} className='text-yellow-400 text-xl'><FaRegEdit /></Link>
-                                                <button onClick={() => deleteProduks(produk.id)} className='text-red-800 text-xl'><FaRegTrashAlt /></button>
+                                                <Link to={`/kasir/produks/${produk.id}/detail`} className='text-yellow-400 flex gap-1 items-center text-xl'>
+                                                    <span className='text-base'>Detail</span>
+                                                    <FaRegEye />
+                                                </Link>
+                                                {/* <Link to={`/kasir/produks/${produk.id}/edit`} className='text-yellow-400 text-xl'><FaRegEdit /></Link>
+                                                <button onClick={() => deleteProduks(produk.id)} className='text-red-800 text-xl'><FaRegTrashAlt /></button> */}
                                             </td>
                                         </tr>
                                     );

@@ -11,7 +11,7 @@ const ListPesananAdmin = () => {
     const [pesananPerPage] = useState(8);
     const [pesanans, setPesanan] = useState([]);
     const token = localStorage.getItem("token");
-    
+
     // Fuction Fetch Pesanan
     useEffect(() => {
         const fetchPesanans = async () => {
@@ -109,7 +109,7 @@ const ListPesananAdmin = () => {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-3">
-                                        ID Pesanan
+                                        Pesanan ID
                                     </th>
                                     <th scope="col" className="px-6 py-3">
                                         User ID
@@ -117,15 +117,6 @@ const ListPesananAdmin = () => {
                                     <th scope="col" className="px-6 py-3">
                                         Produk
                                     </th>
-                                    {/* <th scope="col" className="px-6 py-3">
-                                        Quantity
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Waktu Pick Up
-                                    </th>
-                                    <th scope="col" className="px-6 py-3">
-                                        Total Harga
-                                    </th> */}
                                     <th scope="col" className="px-6 py-3">
                                         Tanggal
                                     </th>
@@ -147,9 +138,6 @@ const ListPesananAdmin = () => {
                                             <td className="px-6 py-4">{pesanan.id}</td>
                                             <td className="px-6 py-4">{pesanan.user_id}</td>
                                             <td className="px-6 py-4">{pesanan.produk_id}</td>
-                                            {/* <td className="px-6 py-4">{pesanan.quantity}</td>
-                                            <td className="px-6 py-4">{pesanan.waktu_pickup}</td>
-                                            <td className="px-6 py-4">{pesanan.total_harga}</td> */}
                                             <td className="px-6 py-4">{formatDate(pesanan.created_at)}</td>
                                             <td className="px-6 py-4">
                                                 <span className={`inline-block text-gray-700 px-5 py-1 rounded-full ${getStatusClass(pesanan.status_pesanan)}`}>

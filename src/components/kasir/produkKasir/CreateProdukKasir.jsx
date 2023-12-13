@@ -71,10 +71,9 @@ const CreateProdukKasir = () => {
                 <div className=" bg-white mx-20 mt-8 justify-center text-[#675e51] rounded-2xl shadow-sm">
                     <div className="relative overflow-x-auto px-20 py-14">
                         <form onSubmit={handleFormSubmit}>
-                            <div className="grid gap-10 mb-6 md:grid-cols-2">
-                                
-                                <div>
-                                    <label htmlFor='nama_produk' className="block mb-2 font-semibold">Nama Produk</label>
+                            <div className='mb-7'>
+                                <label htmlFor='nama_produk' className="block mb-2 font-semibold">Nama Produk</label>
+                                <div className='border border-gray-300 rounded-lg '>
                                     <input
                                         type="text"
                                         id="nama_produk"
@@ -83,14 +82,15 @@ const CreateProdukKasir = () => {
                                         onChange={(e) => setNamaProduk(e.target.value)}
                                         className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
                                 </div>
+                            </div>
+                            <div className="grid gap-10 mb-6 md:grid-cols-2">
                                 <div>
                                     <label htmlFor="kategori_id" className="block mb-2 font-semibold ">Kategori</label>
                                     <select
                                         id="kategori_id"
                                         value={kategori}
                                         onChange={(e) => setKategori(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full"
-                                    >
+                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full">
                                         <option value="">-- Pilih Kategori --</option>
                                         {kategoris.map((category) => (
                                             <option key={category.id} value={category.id}>
@@ -98,17 +98,18 @@ const CreateProdukKasir = () => {
                                             </option>
                                         ))}
                                     </select>
-
                                 </div>
                                 <div>
                                     <label htmlFor="harga" className="block mb-2 font-semibold ">Harga</label>
-                                    <input
-                                        type="number"
-                                        id="harga"
-                                        name='harga'
-                                        value={harga}
-                                        onChange={(e) => setHarga(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    <div className='border border-gray-300 rounded-lg '>
+                                        <input
+                                            type="text"
+                                            id="harga"
+                                            name='harga'
+                                            value={harga}
+                                            onChange={(e) => setHarga(e.target.value)}
+                                            className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                    </div>
                                 </div>
                             </div>
                             <div className="mb-6">
@@ -123,12 +124,14 @@ const CreateProdukKasir = () => {
 
                             <div className="mb-6">
                                 <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
-                                <input
-                                    type='text'
-                                    id='gambar'
-                                    value={gambar}
-                                    onChange={(e) => setGambar(e.target.value)}
-                                    className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                <div className='border border-gray-300 rounded-lg '>
+                                    <input
+                                        type='text'
+                                        id='gambar'
+                                        value={gambar}
+                                        onChange={(e) => setGambar(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                </div>
                             </div>
                             <div className='flex justify-between pt-6'>
                                 <button onClick={handleGoBack} type="button"
@@ -141,7 +144,6 @@ const CreateProdukKasir = () => {
                                 </button>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>

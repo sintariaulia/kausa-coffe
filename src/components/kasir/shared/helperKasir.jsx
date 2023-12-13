@@ -1,5 +1,5 @@
 import {
-	HiHome,
+	HiOutlineHome,
 	HiOutlineShoppingCart,
 	HiCurrencyDollar,
 	HiTag,
@@ -10,7 +10,7 @@ export const KASIR_SIDEBAR_LINKS = [
 		key: 'dashboardkasir',
 		label: 'Dashboard',
 		path: '/kasir/dashboard',
-		icon: <HiHome />
+		icon: <HiOutlineHome />
 	},
 	{
 		key: 'produkkasir',
@@ -27,7 +27,7 @@ export const KASIR_SIDEBAR_LINKS = [
 	{
 		key: 'pembayaran',
 		label: 'Pembayaran',
-		path: '/kasir/pembayaran',
+		path: '/kasir/payment',
 		icon: <HiCurrencyDollar />
 	},
 ]

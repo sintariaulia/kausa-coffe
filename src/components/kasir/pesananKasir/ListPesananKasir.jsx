@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 import { formatDate } from '../../../util/Helper'
@@ -11,6 +11,7 @@ const ListPesananKasir = () => {
     const [pesananPerPage] = useState(8);
     const [pesanans, setPesanan] = useState([]);
     const token = localStorage.getItem("token");
+    const navigate = useNavigate()
 
     // Fuction Fetch Pesanan
     useEffect(() => {
@@ -113,6 +114,9 @@ const ListPesananKasir = () => {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-3">
+                                        Pesanan ID
+                                    </th>
+                                    <th scope="col" className="px-6 py-3">
                                         User ID
                                     </th>
                                     <th scope="col" className="px-6 py-3">
@@ -136,6 +140,7 @@ const ListPesananKasir = () => {
                                             <td scope="row" className="px-6 py-4 ">
                                                 {index + 1}
                                             </td>
+                                            <td className="px-6 py-4">{pesanan.id}</td>
                                             <td className="px-6 py-4">{pesanan.user_id}</td>
                                             <td className="px-6 py-4">{pesanan.produk_id}</td>
                                             <td className="px-6 py-4">{formatDate(pesanan.created_at)}</td>

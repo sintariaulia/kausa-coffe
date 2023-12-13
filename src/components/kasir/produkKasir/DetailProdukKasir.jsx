@@ -56,22 +56,6 @@ const DetailProdukKasir = () => {
                                     <table className='w-full'>
                                         <tr>
                                             <td className="py-5">
-                                                <label htmlFor="kodeProduk" className="block mb-1 font-bold">
-                                                    Kode Produk
-                                                </label>
-                                            </td>
-                                            <td className="">
-                                                <p
-                                                    type="text"
-                                                    id="kode_produk"
-                                                    className="w-full py-2 px-2 border-white rounded-md"
-                                                >
-                                                    <span className='px-8 font-bold'> : </span>{kodeProduk}
-                                                </p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="py-5">
                                                 <label htmlFor="kategori" className="block mb-1 font-bold">
                                                     Kategori
                                                 </label>
