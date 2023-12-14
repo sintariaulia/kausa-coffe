@@ -37,7 +37,6 @@ import CreatePesananAdminPage from '../pages/admin/pesananAdminPage/CreatePesana
 // Data Pembayaran
 import ListPaymentAdminPage from '../pages/admin/paymentAdminPage/ListPaymentAdminPage';
 import DetailPaymentAdminPage from '../pages/admin/paymentAdminPage/DetailPaymentAdminPage';
-
 // ! KASIR
 import DashboardKasirPage from '../pages/kasir/DashboardKasirPage';
 // Data Produk
@@ -51,6 +50,10 @@ import DetailPesananKasirPage from '../pages/kasir/pesananKasirPage/DetailPesana
 // Data Pembayaran
 import ListPembayaranKasirPage from '../pages/kasir/pembayaranKasirPage/ListPembayaranKasirPage';
 import DetailPembayaranKasirPage from '../pages/kasir/pembayaranKasirPage/DetailPembayaranKasirPage';
+// ! Data Penjualan
+import ListPenjualanAdminPage from '../pages/admin/penjualanAdminPage/ListPenjualanAdminPage';
+import LaporanPenjualanPage from '../pages/admin/penjualanAdminPage/LaporanPenjualanPage';
+
 
 function IndexRouter() {
   const [loading, setLoading] = useState(true);
@@ -138,6 +141,10 @@ function IndexRouter() {
           <Route path='/kasir/payment' element={<ListPembayaranKasirPage />} />
           <Route path='/kasir/payment/:id/detail' element={<DetailPembayaranKasirPage />} />
           {/* End Kasir Route */}
+
+          {/* Data Penjualan */}
+          <Route path='/admin/penjualan' element={<ListPenjualanAdminPage />} />
+          <Route path='/admin/penjualan/laporan-penjualan' element={<LaporanPenjualanPage />} />
 
         </Routes>
       )}

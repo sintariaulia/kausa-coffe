@@ -21,7 +21,7 @@ const DetailProduks = () => {
       }
     };
     getProduksById();
-  }, []);
+  }, [params.id]);
 
   // Handle Order Produk (Satu user cuma bisa order satu produk dalam jumlah yang banyak)
   const authState = useSelector((state) => state.auth);
@@ -54,7 +54,7 @@ const DetailProduks = () => {
       <div className='bg-[#edeae4] rounded-[60px] w-[74rem] h-[500px]'>
         <div className=" grid grid-cols justify-center md:grid-cols-2">
           <div className='flex items-center justify-center'>
-            <img src={produks?.gambar} alt="Kausa" className='mx-auto w-[80%]' />
+            <img src={`${process.env.REACT_APP_BASE_URL}${produks?.gambar}`} alt="Kausa" className='mx-auto w-[80%]' />
           </div>
           <div className='justify-start py-14'>
             <div className='py-10 text-[#675e51] '>

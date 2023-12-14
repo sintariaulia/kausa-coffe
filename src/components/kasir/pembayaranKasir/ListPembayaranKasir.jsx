@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { FaPlus, FaRegEdit, FaRegTrashAlt, FaRegEye } from 'react-icons/fa'
-import Swal from 'sweetalert2'
+import { FaRegEye } from 'react-icons/fa'
 import { formatDate } from '../../../util/Helper'
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi'
 

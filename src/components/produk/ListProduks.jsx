@@ -76,7 +76,7 @@ const ListProduks = () => {
                             <div key={index} id={produk.id}
                                 className='bg-[#edeae4] p-3 rounded-3xl'>
                                 <div>
-                                    <img src={produk.gambar} onClick={() => navigate(`/produks/${produk.id}`)} alt="" className='h-52 mx-auto' />
+                                    <img src={`${process.env.REACT_APP_BASE_URL}${produk.gambar}`} onClick={() => navigate(`/produks/${produk.id}`)} alt="" className='h-52 mx-auto' />
                                     <h4 className='text-[#675e51] text-base md:text-lg font-semibold py-3  text-center uppercase'>{produk.nama_produk}</h4>
                                 </div>
                                 <div className='pr-20 lg:pr-[70px] 2xl:pr-24'>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Menu, Transition } from '@headlessui/react'
 import { HiOutlineLogout } from 'react-icons/hi'
@@ -13,6 +13,11 @@ const NavbarAdmin = () => {
         dispatch(logout());
         navigate("/");
     };
+
+    const [modal, setModal] = useState(false);  // Untuk Modal Logout
+    const handleModal = () => {
+        setModal(true);
+    }
 
     return (
         <div className="bg-[#f6f6f6] h-20 px-10 flex items-center border-b border-gray-300 justify-end">
@@ -45,15 +50,31 @@ const NavbarAdmin = () => {
                                         active && 'bg-gray-100',
                                         'active:bg-gray-200 flex items-center  px-4 py-2 text-red-700 cursor-pointer focus:bg-gray-200'
                                     )}
-                                    onClick={() => handleLogout()}>
+                                    onClick={() => handleModal()}>
                                     Logout
                                     <span className="text-xl pl-3"><HiOutlineLogout /></span>
+
                                 </div>
                             )}
                         </Menu.Item>
                     </Menu.Items>
                 </Transition>
             </Menu>
+            {modal && (
+                <div className="fixed inset-0 bg-black bg-opacity-30 z-50 flex items-center justify-center">
+                    <input type="checkbox" id="my-modal" className="modal-toggle" defaultChecked={modal} />
+                    <div className="modal modal-bottom sm:modal-middle">
+                        <div className="modal-box text-left bg-[#edeae4]">
+                            <p className="text-sm text-red-500 pt-2">Logout Confirmation</p>
+                            <h3 className="font-semibold text-black text-base ">Are you sure to Logout ?</h3>
+                            <div className="modal-action">
+                                <button className="btn btn-sm text-white bg-slate-500 hover:bg-slate-400" onClick={() => setModal(false)}>Cancel</button>
+                                <button className="btn btn-sm text-white bg-red-600 hover:bg-red-400" onClick={handleLogout}>Logout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }

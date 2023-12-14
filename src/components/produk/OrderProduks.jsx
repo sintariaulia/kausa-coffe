@@ -122,7 +122,7 @@ const OrderProduks = () => {
           <div className="cart-items">
             <div className="cart-item" key=''>
               <div className="cart-product">
-                <img src={orderProduk?.gambar} alt='gambar' />
+                <img src={`${process.env.REACT_APP_BASE_URL}${orderProduk?.gambar}`} alt='gambar' />
                 <div className='p-10 '>
                   <h3 className='text-2xl text-[#675e51]'>{orderProduk?.nama_produk}</h3>
                   <p className='text-[#675e51]'>{orderProduk?.kategori_id}</p>

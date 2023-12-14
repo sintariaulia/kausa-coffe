@@ -192,10 +192,11 @@ const DetailPembayaranKasir = () => {
                             className="w-full py-2 px-2 border-white rounded-md">
                             <div className='flex items-center'>
                               <span className='px-8 font-bold'> : </span>
+                              {" "}
                               <img
-                                src={BuktiBayar}
+                                src={`${process.env.REACT_APP_BASE_URL}${buktiBayar}`}
                                 alt="Product Preview"
-                                className="w-50 h-60 mx-8 object-center"
+                                className="w-50 h-60 mx-3 object-center"
                               />
                             </div>
                           </p>
@@ -208,14 +209,14 @@ const DetailPembayaranKasir = () => {
                     <button
                       onClick={handleBack}
                       type="button"
-                      className="px-4 py-2 mt-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
+                      className="px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                       Kembali
                     </button>
                     {statusBayar !== "Pembayaran Sukses" && (
                       <button
                         onClick={handleStatusPayment}
                         type="button"
-                        className="px-4 py-2 mt-2 btn-warning text-white font-semibold rounded-md hover:bg-yellow-200">
+                        className="px-4 py-2 btn-warning text-white font-semibold rounded-md hover:bg-yellow-200">
                         Ubah Status Pembayaran
                       </button>
                     )}

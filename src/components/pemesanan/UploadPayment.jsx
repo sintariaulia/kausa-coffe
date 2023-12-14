@@ -1,15 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import PaymentBanner from '../../assets/bannerpay.png'
 import LogoBCA from '../../assets/logobca.jpeg'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 const UploadPayment = () => {
-    // const token = localStorage.getItem("token");
     const { id } = useParams();
     const navigate = useNavigate();
     const [totalHarga, setTotalHarga] = useState("");
+    const token = localStorage.getItem("token");
+    const [status] = useState("Pembayaran Diterima")
+    const [buktiBayar, setBuktiBayar] = useState(null);
+
+    const handlePayment = async (e) => {
+        e.preventDefault();
+        console.log(id, status, buktiBayar);
+
+        try {
+            const formData = new FormData();
+            formData.append('pesanan_id', id);
+            formData.append('bukti_bayar', buktiBayar);
+            formData.append('status', status);
+
+            const config = {
+                method: "post",
+                url: "http://localhost:3001/payment",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                },
+                data: formData,
+            };
+
+            const response = await axios(config);
+            console.log(response.data);
+            navigate("/pesanan/success");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handleBuktiBayarChange = (e) => {
+        const file = e.target.files[0];
+        const maxSize = 10 * 1024 * 1024; // 2MB
+        if (file.size > maxSize) {
+            Swal.fire({
+                title: "Ukuran Gambar Terlalu Besar",
+                text: "Ukuran gambar tidak boleh melebihi 2MB.",
+                icon: "error",
+            });
+            setBuktiBayar(null); // Reset the selected thumbnail
+            return;
+        }
+        setBuktiBayar(file);
+    };
 
     // Fetch API Pesanan By Id
     useEffect(() => {
@@ -30,7 +75,7 @@ const UploadPayment = () => {
         <div className="bg-[#fafafa] pt-11 h-[930px] pb-3 flex flex-col justify-start">
             <img src={PaymentBanner} alt="produkorder" className='mx-auto pt-20 w-[25%]' />
             <div className='mx-40 my-10 bg-[#edeae4]'>
-                <form>
+                <form onSubmit={handlePayment}>
                     <h1 className="p-3 font-bold bg-[#a3292f] text-lg text-white rounded-sm rounded-t-md">DETAIL PEMBAYARAN</h1>
                     <div className="p-5 text-[#54514d]">
                         <div className="flex justify-between items-center my-5">
@@ -38,7 +83,7 @@ const UploadPayment = () => {
                                 <h1 className="text-[#54514d] text-2xl font-extrabold ">INVOICE</h1>
                             </div>
                             <div className="flex flex-col text-center">
-                                <p className="text-[#54514d] text-sm">Rabu, 26/07/2023</p>
+                                <p className="text-[#54514d] text-sm">Rabu, 13/12/2023</p>
                                 <p className="text-[#54514d] text-sm">22.10 WIB</p>
                             </div>
                         </div>
@@ -68,22 +113,19 @@ const UploadPayment = () => {
                         </div>
                         <div className="p-5">
                             <div className="relative z-0 w-full mb-6 group">
-                                <input type="file" name="buktiPembayaran" id="buktiPembayaran" required />
+                                <input type="file" name="buktiPembayaran" id="buktiPembayaran" onChange={handleBuktiBayarChange} required />
                             </div>
                         </div>
                         <div className="w-full my-2 border border-[#54514d]"></div>
 
                         <div className='mt-7'>
-                            <Link to="/pesanan/success">
-                                <button
-                                    type="submit"
-                                    className="py-3 rounded-lg font-bold px-6 w-full border text-white bg-[#a3292f] hover:bg-[#ff3333]">
-                                    Upload Bukti Pembayaran
-                                </button>
-                            </Link>
+                            <button
+                                type="submit"
+                                className="py-3 rounded-lg font-bold px-6 w-full border text-white bg-[#a3292f] hover:bg-[#ff3333]">
+                                Upload Bukti Pembayaran
+                            </button>
                         </div>
                     </div>
-                    {/* 3. Tampilkan detail pembayaran yang akan dilakukan user */}
                 </form>
             </div>
         </div>

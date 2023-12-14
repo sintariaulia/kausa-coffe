@@ -5,16 +5,18 @@ import Swal from 'sweetalert2'
 import { CiSaveDown2 } from 'react-icons/ci'
 
 const CreateProdukAdmin = () => {
+    const getToken = localStorage.getItem("token");
     const navigate = useNavigate();
     const [namaProduk, setNamaProduk] = useState("");
     const [kategori, setKategori] = useState("");
     const [harga, setHarga] = useState("");
     const [deskripsi, setDeskripsi] = useState("");
-    const [gambar, setGambar] = useState("");
+    const [gambar, setGambar] = useState(null);
 
     const handleBack = () => {
         navigate(-1);
     };
+
     // Select Data Kategori
     const [kategoris, setKategoris] = useState([]);
     useEffect(() => {
@@ -35,22 +37,32 @@ const CreateProdukAdmin = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            const getToken = localStorage.getItem("token");
+            const formDataProduk = new FormData();
+            formDataProduk.append("kategori_id", kategori);
+            formDataProduk.append("nama_produk", namaProduk);
+            formDataProduk.append("deskripsi", deskripsi);
+            formDataProduk.append("harga", harga);
+            formDataProduk.append("gambar", gambar);
+
             const config = {
+                method: "post",
+                url: "http://localhost:3001/produk",
                 headers: {
                     Authorization: `Bearer ${getToken}`,
+                    'Content-Type': 'multipart/form-data',
                 },
+                data: formDataProduk,
             };
+            // const dataProduk = {
+            //     kategori_id: kategori,
+            //     nama_produk: namaProduk,
+            //     deskripsi: deskripsi,
+            //     harga: harga,
+            //     gambar: gambar,
+            // }
+            // const response = await axios.post('http://localhost:3001/produk', dataProduk, config);
 
-            const dataProduk = {
-                kategori_id: kategori,
-                nama_produk: namaProduk,
-                deskripsi: deskripsi,
-                harga: harga,
-                gambar: gambar,
-            }
-
-            const response = await axios.post('http://localhost:3001/produk', dataProduk, config);
+            const response = await axios(config);
             console.log(response.data);
             Swal.fire({
                 title: "Berhasil!",
@@ -61,12 +73,27 @@ const CreateProdukAdmin = () => {
 
             setTimeout(() => {
                 navigate('/admin/produks');
-            }, 3000);
+            }, 2000);
 
         } catch (error) {
             console.log("error", error)
         }
     };
+
+    const handleGambarProdukChange = (e) => {
+        const file = e.target.files[0];
+        const maxSize = 10 * 1024 * 1024; //2MB
+        if (file.size > maxSize) {
+            Swal.fire({
+                title: "Ukuran Gambar Terlalu Besar",
+                text: "Ukuran gambar tidak boleh melebihi 2MB.",
+                icon: "error",
+            });
+            setGambar(null); // Reset the selected gambar product
+            return;
+        }
+        setGambar(file);
+    }
 
     return (
         <div className="flex-1 p-3 min-h-0 overflow-auto">
@@ -130,37 +157,24 @@ const CreateProdukAdmin = () => {
                                     className="block p-2.5 w-full  bg-gray-50 rounded-lg border border-gray-300" >
                                 </textarea>
                             </div>
-
-                            <div className="mb-6">
-                                <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
-                                <div className='border border-gray-300 rounded-lg '>
+                            <div class="mb-6">
+                                <label class="block mb-2 mt-1 font-semibold " htmlFor="gambar">Upload Gambar</label>
+                                <div className='border border-gray-300 rounded-lg'>
                                     <input
-                                        type='text'
-                                        id='gambar'
-                                        value={gambar}
-                                        onChange={(e) => setGambar(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                        id="produkGambar"
+                                        type="file"
+                                        name='produkGambar'
+                                        class="block w-full rounded-lg bg-gray-50 cursor-pointer"
+                                        onChange={handleGambarProdukChange} required />
                                 </div>
                             </div>
-
-                            {/* Upload file gambar */}
-                            {/* <div class="mb-6">
-                                <label class="block mb-2 font-medium " htmlFor="gambar">Upload Gambar</label>
-                                <input
-                                    value={gambar}
-                                    onChange={(e) => setGambar(e.target.value)}
-                                    class="block w-full border border-gray-300 rounded-lg cursor-pointer"
-                                    id="gambar"
-                                    type="file" />
-                            </div> */}
-
                             <div className='flex justify-between pt-6'>
                                 <button onClick={handleBack} type="button"
-                                    className="w-[100px] px-4 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
+                                    className="px-11 py-2 bg-red-800 text-white font-semibold rounded-md hover:bg-red-600">
                                     Kembali
                                 </button>
-                                <button type="submit" className="btn-success inline-flex items-center text-white font-bold py-2 px-3 rounded-md">
-                                    <span className='pr-2 text-2xl'> <CiSaveDown2 /> </span>
+                                <button type="submit" className="btn-success inline-flex gap-2 items-center text-white font-bold py-2 px-10 rounded-md">
+                                    <span className='text-2xl'> <CiSaveDown2 /> </span>
                                     Simpan
                                 </button>
                             </div>

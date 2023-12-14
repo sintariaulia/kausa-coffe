@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LogoHori from '../assets/logo1.png'
 import LogoKausa from '../assets/logo2.png'
 import classNames from 'classnames'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../../services/authSlice'
-import { 
+import {
     HiOutlineHome,
-	HiOutlineShoppingCart,
-	HiCurrencyDollar,
-	HiUserGroup,
-	HiTag,
-	HiListBullet
+    HiOutlineShoppingCart,
+    HiCurrencyDollar,
+    HiUserGroup,
+    HiTag,
+    HiListBullet,
+    HiOutlineCalculator
 } from 'react-icons/hi2'
 import { HiOutlineLogout } from 'react-icons/hi'
 
@@ -21,9 +22,15 @@ const AdminSidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogout = () => {
-        dispatch(logout()); // Langkah 5: Panggil aksi logout saat tombol logout diklik
+        dispatch(logout());
         navigate("/");
     };
+    
+    // Untuk Modal Logout
+    const [modal, setModal] = useState(false);
+    const handleModal = () => {
+        setModal(true);
+    }
 
     const DASHBOARD_SIDEBAR_LINKS = [
         {
@@ -62,6 +69,12 @@ const AdminSidebar = () => {
             path: '/admin/payment',
             icon: <HiCurrencyDollar />
         },
+        {
+            key: 'penjualan',
+            label: 'Penjualan',
+            path: '/admin/penjualan',
+            icon: <HiOutlineCalculator />
+        },
     ]
 
     return (
@@ -85,10 +98,25 @@ const AdminSidebar = () => {
                 ))}
                 <div
                     className={classNames(linkClass, 'cursor-pointer text-red-600')}
-                    onClick={() => handleLogout()} >
+                    onClick={() => handleModal()} >
                     <span className="text-xl"><HiOutlineLogout /></span>
                     Logout
                 </div>
+                {modal && (
+                    <div className="fixed inset-0 bg-black bg-opacity-30 z-50 flex items-center justify-center">
+                        <input type="checkbox" id="my-modal" className="modal-toggle" defaultChecked={modal} />
+                        <div className="modal modal-bottom sm:modal-middle">
+                            <div className="modal-box text-left bg-[#edeae4]">
+                                <p className="text-sm text-red-500 pt-2">Logout Confirmation</p>
+                                <h3 className="font-semibold text-black text-base ">Are you sure to Logout ?</h3>
+                                <div className="modal-action">
+                                    <button className="btn btn-sm text-white bg-slate-500 hover:bg-slate-400" onClick={() => setModal(false)}>Cancel</button>
+                                    <button className="btn btn-sm text-white bg-red-600 hover:bg-red-400" onClick={handleLogout}>Logout</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )

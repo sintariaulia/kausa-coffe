@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { formatDate } from '../../../util/Helper'
-import BuktiBayar from '../assets/buktipembayaran.png'
 
 const DetailPaymentAdmin = () => {
   const navigate = useNavigate()
@@ -59,6 +58,7 @@ const DetailPaymentAdmin = () => {
     }
   }
 
+  // Status Payment
   const handleStatusPayment = async (e) => {
     e.preventDefault();
     Swal.fire({
@@ -191,8 +191,9 @@ const DetailPaymentAdmin = () => {
                             className="w-full py-2 px-2 border-white rounded-md">
                             <div className='flex items-center'>
                               <span className='px-8 font-bold'> : </span>
+                              {" "}
                               <img
-                                src={BuktiBayar}
+                               src={`${process.env.REACT_APP_BASE_URL}${buktiBayar}`}
                                 alt="Product Preview"
                                 className="w-50 h-60 mx-8 object-center"
                               />

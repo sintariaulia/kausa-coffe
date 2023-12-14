@@ -21,7 +21,7 @@ const EditProdukAdmin = () => {
             try {
                 const response = await axios.get(`http://localhost:3001/produk/${id}`);
                 const produkData = response.data.datas;
-
+                console.log(produkData)
                 setNamaProduk(produkData.nama_produk);
                 setHarga(produkData.harga);
                 setDeskripsi(produkData.deskripsi);
@@ -36,31 +36,42 @@ const EditProdukAdmin = () => {
     // Function Edit Data Produk
     const handleFormUpdate = async (e) => {
         e.preventDefault();
-
         const confirmResult = await Swal.fire({
             title: "Do you want to save the changes?",
             showCancelButton: true,
             confirmButtonText: "Save",
             cancelButtonColor: "#d33",
         });
+
         if (confirmResult.isConfirmed) {
             try {
+                const formDataProduk = new FormData();
+                formDataProduk.append("nama_produk", namaProduk);
+                formDataProduk.append("deskripsi", deskripsi);
+                formDataProduk.append("harga", harga);
+                formDataProduk.append("gambar", gambar);
+
                 const getToken = localStorage.getItem("token");
                 const config = {
+                    method: "put",
+                    url: `http://localhost:3001/produk/${id}`,
                     headers: {
                         Authorization: `Bearer ${getToken}`,
+                        'Content-Type': 'multipart/form-data',
                     },
+                    data: formDataProduk,
                 };
                 // Form Body Request Edit
-                const editProduk = {
-                    nama_produk: namaProduk,
-                    deskripsi: deskripsi,
-                    harga: harga,
-                    gambar: gambar,
-                }
+                // const editProduk = {
+                //     nama_produk: namaProduk,
+                //     deskripsi: deskripsi,
+                //     harga: harga,
+                //     gambar: gambar,
+                // }
+                // await axios.put(`http://localhost:3001/produk/${id}`, editProduk, config);
 
-                await axios.put(`http://localhost:3001/produk/${id}`, editProduk, config);
-
+                const response = await axios(config);
+                console.log(response.data);
                 Swal.fire({
                     title: "Changes saved successfully!",
                     icon: "success",
@@ -74,6 +85,21 @@ const EditProdukAdmin = () => {
             }
         }
     };
+
+    const handleGambarProdukChange = (e) => {
+        const file = e.target.files[0];
+        const maxSize = 10 * 1024 * 1024; //2MB
+        if (file.size > maxSize) {
+            Swal.fire({
+                title: "Ukuran Gambar Terlalu Besar",
+                text: "Ukuran gambar tidak boleh melebihi 2MB.",
+                icon: "error",
+            });
+            setGambar(null); // Reset the selected gambar product
+            return;
+        }
+        setGambar(file);
+    }
 
     return (
         <div className="flex-1 p-3 min-h-0 overflow-auto">
@@ -112,7 +138,6 @@ const EditProdukAdmin = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <div className="mb-6">
                                 <label htmlFor="deskripsi" className="block mb-2 font-semibold ">Deskripsi</label>
                                 <textarea
@@ -123,14 +148,14 @@ const EditProdukAdmin = () => {
                                 </textarea>
                             </div>
                             <div className="mb-6">
-                                <label htmlFor="gambar" className="block mb-2 font-semibold">URL Gambar</label>
+                                <label htmlFor="produkGambar" className="block mb-2 font-semibold">Gambar Produk</label>
                                 <div className='border border-gray-300 rounded-lg'>
                                     <input
-                                        type='text'
-                                        id='gambar'
-                                        value={gambar}
-                                        onChange={(e) => setGambar(e.target.value)}
-                                        className="bg-gray-50 border border-gray-300 rounded-lg w-full" required />
+                                        type='file'
+                                        id='produkGambar'
+                                        name='produkGambar'
+                                        onChange={handleGambarProdukChange}
+                                        className="block cursor-pointer rounded-lg w-full" required/>
                                 </div>
                             </div>
                             <div className='flex justify-between gap-5 pt-5'>
