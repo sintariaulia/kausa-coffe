@@ -65,15 +65,23 @@ const DetailPesananAdmin = () => {
   };
   const handleStatusPesanan = async () => {
     Swal.fire({
-      title: "Ubah Status Pesanan?",
+      title: "Ubah Status Pemesanan?",
+      showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Pesanan Selesai",
-      cancelButtonText: "Batal",
+      confirmButtonText: "Pesenan Selesai",
+      denyButtonText: "Penasan Dibatalkan",
+      cancelButtonText: "Cancel",
       confirmButtonClass: "bg-green-500 hover:bg-purple-600 text-white font-semibold",
+      denyButtonClass: "bg-red-500 hover:bg-red-600 text-white font-semibold",
     }).then(async (result) => {
+      /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         await updateStatus("Pesanan Selesai");
         Swal.fire("Sukses!", "", "success");
+        navigate("/admin/pesanan");
+      } else if (result.isDenied) {
+        await updateStatus("Pesanan Dibatalkan");
+        Swal.fire("Pesanan Anda Dibatalkan, Silahkan", "", "info");
         navigate("/admin/pesanan");
       }
     });
@@ -82,14 +90,16 @@ const DetailPesananAdmin = () => {
   // BackGround Status
   const getStatusClass = (status) => {
     switch (status) {
-      case 'Di Proses':
-        return 'btn-warning ';
-      case 'Pesanan Selesai':
-        return 'btn-success';
-      default:
-        return '';
+        case 'Di Proses':
+            return 'btn-warning ';
+        case 'Pesanan Selesai':
+            return 'btn-success';
+        case 'Pesanan Dibatalkan':
+            return 'btn-error ';
+        default:
+            return '';
     }
-  };
+};
 
   return (
     <div className="flex-1 p-4 min-h-0 overflow-auto">

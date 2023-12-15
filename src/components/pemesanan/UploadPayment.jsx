@@ -112,16 +112,18 @@ const UploadPayment = () => {
                             ini
                         </div>
                         <div className="p-5">
-                            <div className="relative z-0 w-full mb-6 group">
-                                <input type="file" name="buktiPembayaran" id="buktiPembayaran" onChange={handleBuktiBayarChange} required />
+                            <div className="relative z-0 w-full mb-6 group bg-white/60">
+                                <div className=' border border-white'>
+                                    <input type="file" name="buktiPembayaran" id="buktiPembayaran" onChange={handleBuktiBayarChange} required />
+                                </div>
                             </div>
                         </div>
                         <div className="w-full my-2 border border-[#54514d]"></div>
 
-                        <div className='mt-7'>
+                        <div className='mt-7 '>
                             <button
                                 type="submit"
-                                className="py-3 rounded-lg font-bold px-6 w-full border text-white bg-[#a3292f] hover:bg-[#ff3333]">
+                                className="py-3 rounded-lg font-bold px-6 w-full  text-white bg-[#a3292f] hover:bg-[#ff3333]">
                                 Upload Bukti Pembayaran
                             </button>
                         </div>

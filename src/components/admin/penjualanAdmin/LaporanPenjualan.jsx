@@ -24,7 +24,6 @@ const LaporanPenjualan = () => {
                 console.log(error, "error");
             }
         };
-
         fetchPesanans();
     }, []);
 
@@ -80,10 +79,8 @@ const LaporanPenjualan = () => {
                                         </tr>
                                     )
                                 })}
-
                                 {/* Tambahkan baris sesuai dengan data penjualan */}
                             </tbody>
-
                         </table>
                         <div className='mx-10 py-4 flex justify-between  font-semibold text-lg'>
                             <div>Total Penjualan </div>

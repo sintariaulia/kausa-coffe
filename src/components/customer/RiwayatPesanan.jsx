@@ -38,6 +38,8 @@ const RiwayatPesanan = () => {
                 return 'btn-warning ';
             case 'Pesanan Selesai':
                 return 'btn-success';
+            case 'Pesanan Dibatalkan':
+                return 'btn-error ';
             default:
                 return '';
         }
