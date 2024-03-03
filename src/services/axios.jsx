@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3001"
+const baseURL = `REACT_APP_BASE_URL`
 
 export const client = axios.create({
   baseURL
