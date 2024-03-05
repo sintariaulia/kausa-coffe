@@ -14,7 +14,7 @@ const DetailPesanan = () => {
     useEffect(() => {
         const fetchPesananById = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/pesanan/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan/${id}`);
                 const pesananData = response.data?.datas;
                 setProdukNama(pesananData.produk_id);
                 setQuantity(pesananData.quantity);

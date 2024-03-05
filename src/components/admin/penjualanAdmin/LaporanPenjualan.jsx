@@ -12,7 +12,7 @@ const LaporanPenjualan = () => {
     useEffect(() => {
         const fetchPesanans = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/pesanan');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan`);
                 const listPesanans = response.data?.datas;
                 listPesanans.sort((a, b) => b.id - a.id);
                 setPesanan(listPesanans);

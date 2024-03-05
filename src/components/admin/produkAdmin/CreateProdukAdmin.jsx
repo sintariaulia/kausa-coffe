@@ -22,7 +22,7 @@ const CreateProdukAdmin = () => {
     useEffect(() => {
         const fetchKategoris = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/kategori');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/kategori`);
                 // console.log('response', response.data);
                 const listKategoris = response.data?.datas;
                 setKategoris(listKategoris);
@@ -46,7 +46,7 @@ const CreateProdukAdmin = () => {
 
             const config = {
                 method: "post",
-                url: "http://localhost:3001/produk",
+                url: `${process.env.REACT_APP_BASE_URL}/produk`,
                 headers: {
                     Authorization: `Bearer ${getToken}`,
                     'Content-Type': 'multipart/form-data',

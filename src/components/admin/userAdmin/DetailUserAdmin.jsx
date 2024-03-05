@@ -28,7 +28,7 @@ const DetailUserAdmin = () => {
                         Authorization: `Bearer ${getToken}`,
                     },
                 };
-                const response = await axios.get(`http://localhost:3001/user/${id}`, (config));
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${id}`, (config));
                 const userData = response.data?.datas;
                 setNama(userData.nama);
                 setRole(userData.role);

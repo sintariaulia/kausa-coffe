@@ -35,7 +35,7 @@ const ListPesananKasir = () => {
         try {
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/pesanan/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/pesanan/${id}`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

@@ -22,7 +22,7 @@ const ListUserAdmin = () => {
             let config = {
                 method: "get",
                 maxBodyLength: Infinity,
-                url: `http://localhost:3001/user`,
+                url: `${process.env.REACT_APP_BASE_URL}/user`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -61,7 +61,7 @@ const ListUserAdmin = () => {
                     nama: editedUserName,
                     no_hp: editedUserNoHp,
                 };
-                await axios.put(`http://localhost:3001/user/${editedUserId}`, editedUserData, config);
+                await axios.put(`${process.env.REACT_APP_BASE_URL}/user/${editedUserId}`, editedUserData, config);
                 setShowForm(false);
                 Swal.fire({
                     title: "Update Profile Saved!",
@@ -93,7 +93,7 @@ const ListUserAdmin = () => {
         try {
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/user/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/user/${id}`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

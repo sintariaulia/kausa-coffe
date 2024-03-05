@@ -10,7 +10,7 @@ const AboutUs = () => {
     useEffect(() => {
         const getAboutUs = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/aboutus');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/aboutus`);
                 setAboutUs(response.data.datas);
             } catch (error) {
                 console.log(error)

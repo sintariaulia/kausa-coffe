@@ -31,7 +31,7 @@ const Profile = () => {
                 nama: editedUserName,
                 no_hp: editedUserNoHp,
             };
-            await axios.put(`http://localhost:3001/user/${editedUserId}`, editedUserData, config);
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/user/${editedUserId}`, editedUserData, config);
             setShowForm(false);
             Swal.fire({
                 title: "Update Profile Saved!",

@@ -21,7 +21,7 @@ const CreateProdukKasir = () => {
     useEffect(() => {
         const fetchKategoris = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/kategori');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/kategori`);
                 const listKategoris = response.data?.datas;
                 setKategoris(listKategoris);
             } catch (error) {
@@ -35,7 +35,7 @@ const CreateProdukKasir = () => {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/produk', {
+            await axios.post(`${process.env.REACT_APP_BASE_URL}/produk`, {
                 kategori_id: kategori,
                 nama_produk: namaProduk,
                 deskripsi: deskripsi,

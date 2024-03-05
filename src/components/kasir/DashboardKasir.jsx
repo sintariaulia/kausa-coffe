@@ -13,11 +13,11 @@ const DashboardKasir = () => {
     const fetchData = async () => {
       try {
         // Fetch Produk
-        const responseProduk = await axios.get('http://localhost:3001/produk');
+        const responseProduk = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk`);
         const listProduks = responseProduk.data?.datas;
         setTotalProducts(listProduks.length);
         // Fetch Pesanan
-        const responsePesanan = await axios.get('http://localhost:3001/pesanan');
+        const responsePesanan = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan`);
         const listPesanan = responsePesanan.data?.datas;
         setTotalPesanans(listPesanan.length);
         // Calculate Total Pendapatan

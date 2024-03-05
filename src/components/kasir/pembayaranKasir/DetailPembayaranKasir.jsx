@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { formatDate } from '../../../util/Helper'
-import BuktiBayar from '../assets/buktipembayaran.png'
 
 const DetailPembayaranKasir = () => {
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ const DetailPembayaranKasir = () => {
   useEffect(() => {
     const getPaymentById = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/payment/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/payment/${id}`);
         const dataPayment = response.data?.datas[0];
         setPaymentId(dataPayment.id)
         setPesananId(dataPayment.pesanan_id);
@@ -52,7 +51,7 @@ const DetailPembayaranKasir = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:3001/payment/${id}`, data, config);
+      const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/payment/${id}`, data, config);
       console.log(response.data?.datas);
     } catch (error) {
       console.log(error);

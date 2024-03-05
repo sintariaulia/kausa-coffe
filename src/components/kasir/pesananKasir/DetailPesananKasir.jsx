@@ -25,7 +25,7 @@ const DetailPesananKasir = () => {
     useEffect(() => {
         const getPesananById = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/pesanan/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan/${id}`);
                 const dataPesanan = response.data?.datas;
                 setPesananId(dataPesanan.id)
                 setUser(dataPesanan.user_id);
@@ -57,7 +57,7 @@ const DetailPesananKasir = () => {
         };
 
         try {
-            const response = await axios.put(`http://localhost:3001/pesanan/${id}`, data, config);
+            const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/pesanan/${id}`, data, config);
             console.log(response.data?.datas);
         } catch (error) {
             console.log(error);

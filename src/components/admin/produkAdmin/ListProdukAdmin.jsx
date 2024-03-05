@@ -16,7 +16,7 @@ const ListProdukAdmin = () => {
     useEffect(() => {
         const fetchProduks = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/produk');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk`);
                 const listProduks = response.data?.datas;
                 // console.log(response.data?.datas)
                 listProduks.sort((a, b) => b.id - a.id);    // Sort New Produk
@@ -34,7 +34,7 @@ const ListProdukAdmin = () => {
             const getToken = localStorage.getItem("token");
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/produk/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/produk/${id}`,
                 headers: {
                     Authorization: `Bearer ${getToken}`,
                 },

@@ -22,7 +22,7 @@ const DetailPaymentAdmin = () => {
   useEffect(() => {
     const getPaymentById = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/payment/${id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/payment/${id}`);
         const dataPayment = response.data?.datas[0];
         setPaymentId(dataPayment.id)
         setPesananId(dataPayment.pesanan_id);
@@ -51,7 +51,7 @@ const DetailPaymentAdmin = () => {
     }
 
     try {
-      const response = await axios.put(`http://localhost:3001/payment/${id}`, data, config);
+      const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/payment/${id}`, data, config);
       console.log(response.data?.datas);
     } catch (error) {
       console.log(error);

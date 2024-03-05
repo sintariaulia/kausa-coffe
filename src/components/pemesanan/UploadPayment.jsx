@@ -25,7 +25,7 @@ const UploadPayment = () => {
 
             const config = {
                 method: "post",
-                url: "http://localhost:3001/payment",
+                url: `${process.env.REACT_APP_BASE_URL}/payment`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data',
@@ -60,7 +60,7 @@ const UploadPayment = () => {
     useEffect(() => {
         const fetchPesananById = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/pesanan/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan/${id}`);
                 const pesananData = response.data?.datas;
                 setTotalHarga(pesananData.total_harga);
                 console.log(response.data);

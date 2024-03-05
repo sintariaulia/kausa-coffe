@@ -24,7 +24,7 @@ const CreatePesananAdmin = () => {
   useEffect(() => {
     const fetchDataProduks = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/produk');
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk`);
         const listProduk = response.data?.datas;
         setProduks(listProduk);
       } catch (error) {
@@ -59,7 +59,7 @@ const CreatePesananAdmin = () => {
         status_pesanan: statusPesanan,
       };
 
-      const response = await axios.post('http://localhost:3001/pesanan', dataPesanan, config);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/pesanan`, dataPesanan, config);
       console.log(response.data);
       Swal.fire({
         title: "Berhasil!",

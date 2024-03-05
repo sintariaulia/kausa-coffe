@@ -14,7 +14,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3001/auth/register', {
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/auth/register`, {
                 nama: nama,
                 role: "user",
                 no_hp: noHp,

@@ -20,7 +20,7 @@ const EditProdukKasir = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/produk/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${id}`);
                 const produkData = response.data.datas;
 
                 setNamaProduk(produkData.nama_produk);
@@ -46,7 +46,7 @@ const EditProdukKasir = () => {
         });
         if (confirmResult.isConfirmed) {
             try {
-                await axios.put(`http://localhost:3001/produk/${id}`, {
+                await axios.put(`${process.env.REACT_APP_BASE_URL}/produk/${id}`, {
                     nama_produk: namaProduk,
                     deskripsi: deskripsi,
                     harga: harga,

@@ -21,7 +21,7 @@ const DetailProdukAdmin = () => {
     useEffect(() => {
         const fetchProdukById = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/produk/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${id}`);
                 const produkData = response.data?.datas;
 
                 if (produkData) {

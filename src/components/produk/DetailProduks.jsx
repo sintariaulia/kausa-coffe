@@ -13,7 +13,7 @@ const DetailProduks = () => {
   useEffect(() => {
     const getProduksById = async () => {
       try {
-        const responseDetail = await axios.get(`http://localhost:3001/produk/${params.id}`);
+        const responseDetail = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${params.id}`);
         const produkDetail = responseDetail.data.datas;
         setProduks(produkDetail);
       } catch (error) {

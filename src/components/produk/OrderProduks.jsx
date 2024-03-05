@@ -29,7 +29,7 @@ const OrderProduks = () => {
   useEffect(() => {
     const getOrderProdukId = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/produk/${params.id}`);
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${params.id}`);
         const produkOrder = response.data.datas;
         setOrderProduk(produkOrder);
       } catch (error) {
@@ -86,7 +86,7 @@ const OrderProduks = () => {
       });
 
       if (confirmationResult.isConfirmed) {
-        const response = await axios.post('http://localhost:3001/pesanan', orderData, config);
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/pesanan`, orderData, config);
         console.log(response.data);
         Swal.fire({
           title: "Berhasil!",

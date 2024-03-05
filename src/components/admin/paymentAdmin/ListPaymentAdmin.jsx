@@ -16,7 +16,7 @@ const ListPaymentAdmin = () => {
     useEffect(() => {
         const fetchPayments = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/payment');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/payment`);
                 const listPayments = response.data?.datas;
                 console.log(listPayments)
                 listPayments.sort((a, b) => b.id - a.id);
@@ -33,7 +33,7 @@ const ListPaymentAdmin = () => {
         try {
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/payment/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/payment/${id}`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

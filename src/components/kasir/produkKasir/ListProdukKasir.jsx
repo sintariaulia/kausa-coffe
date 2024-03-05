@@ -13,7 +13,7 @@ const ListProdukKasir = () => {
     useEffect(() => {
         const fetchProduks = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/produk');
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk`);
                 console.log('response', response.data);
                 const listProduks = response.data?.datas;
                 listProduks.sort((a, b) => b.id - a.id);    // Sort New Produk

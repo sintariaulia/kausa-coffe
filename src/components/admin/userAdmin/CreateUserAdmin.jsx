@@ -32,7 +32,7 @@ const CreateUserAdmin = () => {
         email: email,
         password: password,
       }
-      const response = await axios.post('http://localhost:3001/user', dataUser, config);
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user`, dataUser, config);
       console.log(response.data);
       Swal.fire({
         title: "Berhasil!",

@@ -15,9 +15,9 @@ const ListProduks = () => {
     useEffect(() => {
         const getProduks = async () => {
             try {
-                let url = 'http://localhost:3001/produk';
+                let url = `${process.env.REACT_APP_BASE_URL}/produk`;
                 if (selectedCategory !== '') {
-                    url = `http://localhost:3001/produk/kategori/${selectedCategory}`;
+                    url = `${process.env.REACT_APP_BASE_URL}/produk/kategori/${selectedCategory}`;
                 }
                 const responseProduk = await axios.get(url);
                 const listProduks = responseProduk.data.datas;

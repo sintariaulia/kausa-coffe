@@ -19,7 +19,7 @@ const RiwayatPesanan = () => {
     useEffect(() => {
         const fetchPesananUsers = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/pesanan?user_id=${userId}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/pesanan?user_id=${userId}`);
                 const listPesanans = response.data?.datas;
                 listPesanans.sort((a, b) => b.id - a.id);
                 setPesanan(listPesanans);

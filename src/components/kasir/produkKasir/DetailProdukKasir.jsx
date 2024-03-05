@@ -20,7 +20,7 @@ const DetailProdukKasir = () => {
         const fetchProdukById = async () => {
             console.log("API Response Running")
             try {
-                const response = await axios.get(`http://localhost:3001/produk/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${id}`);
                 const produkData = response.data?.datas;
                 setKategori(produkData.kategori_id);
                 setNamaProduk(produkData.nama_produk);

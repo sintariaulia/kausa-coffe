@@ -20,7 +20,7 @@ const ListKategoriAdmin = () => {
             let config = {
                 method: "get",
                 maxBodyLength: Infinity,
-                url: `http://localhost:3001/kategori`,
+                url: `${process.env.REACT_APP_BASE_URL}/kategori`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -51,7 +51,7 @@ const ListKategoriAdmin = () => {
                 nama_kategori: newCategory,
             }
 
-            const response = await axios.post('http://localhost:3001/kategori', dataKategori, config);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/kategori`, dataKategori, config);
             console.log(response.data);
             // Close the form and refresh the data
             setShowForm(false);
@@ -82,7 +82,7 @@ const ListKategoriAdmin = () => {
                 nama_kategori: editCategory,
             }
 
-            await axios.put(`http://localhost:3001/kategori/${editCategoryId}`, editKategori, config);
+            await axios.put(`${process.env.REACT_APP_BASE_URL}/kategori/${editCategoryId}`, editKategori, config);
             setShowForm(false);
             await Swal.fire({
                 title: "Update Saved!",
@@ -109,7 +109,7 @@ const ListKategoriAdmin = () => {
         try {
             const config = {
                 method: "delete",
-                url: `http://localhost:3001/kategori/${id}`,
+                url: `${process.env.REACT_APP_BASE_URL}/kategori/${id}`,
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

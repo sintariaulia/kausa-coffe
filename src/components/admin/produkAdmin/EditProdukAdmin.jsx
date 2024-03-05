@@ -19,7 +19,7 @@ const EditProdukAdmin = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3001/produk/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/produk/${id}`);
                 const produkData = response.data.datas;
                 console.log(produkData)
                 setNamaProduk(produkData.nama_produk);
@@ -54,7 +54,7 @@ const EditProdukAdmin = () => {
                 const getToken = localStorage.getItem("token");
                 const config = {
                     method: "put",
-                    url: `http://localhost:3001/produk/${id}`,
+                    url: `${process.env.REACT_APP_BASE_URL}/produk/${id}`,
                     headers: {
                         Authorization: `Bearer ${getToken}`,
                         'Content-Type': 'multipart/form-data',
